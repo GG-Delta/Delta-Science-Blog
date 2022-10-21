@@ -7,10 +7,10 @@ website:
   navbar:
     right:
       - about.qmd
+      - icon: house-heart
+        href: https://delta-science.eu
       - icon: github
-        href: https://github.com/
-      - icon: twitter
-        href: https://twitter.com
+        href: https://github.com/GG-Delta
 format:
   html:
     theme: solar

@@ -1,19 +1,22 @@
 ---
 title: "About"
-image: profile.jpg
+image: island.png
 about:
   template: jolla
   links:
-    - icon: twitter
-      text: Twitter
-      href: https://twitter.com
+    - icon: house-heart
+      text: Delta-Science
+      href: https://delta-science.eu
     - icon: linkedin
       text: LinkedIn
-      href: https://linkedin.com
+      href: https://www.linkedin.com/in/gernot-g-supp-3288933a/
     - icon: github
       text: Github
-      href: https://github.com
-
+      href: https://github.com/GG-Delta
+    - icon: image
+      text: Freepik island icon attribute
+      href: https://www.flaticon.com/free-icons/sky
+comments: false
 ---
 
-About this blog
+About this blog this is all the text that enters here ---
