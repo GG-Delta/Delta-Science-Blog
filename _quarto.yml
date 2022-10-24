@@ -13,6 +13,9 @@ website:
         href: https://www.linkedin.com/in/gernot-g-supp-3288933a/  
       - icon: github
         href: https://github.com/GG-Delta
+  page-footer:
+    left: "Blog made with [Quarto](https://quarto.org/) and the caring wisdom of its community: 🤝 Thank you! 🙏"
+      
 format:
   html:
     theme: solar
