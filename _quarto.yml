@@ -9,6 +9,8 @@ website:
       - about.qmd
       - icon: house-heart
         href: https://delta-science.eu
+      - icon: linkedin
+        href: https://www.linkedin.com/in/gernot-g-supp-3288933a/  
       - icon: github
         href: https://github.com/GG-Delta
 format:

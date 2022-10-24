@@ -13,10 +13,11 @@ about:
     - icon: github
       text: Github
       href: https://github.com/GG-Delta
-    - icon: image
-      text: Freepik island icon attribute
-      href: https://www.flaticon.com/free-icons/sky
 comments: false
 ---
 
-About this blog this is all the text that enters here ---
+This blog reflects some of the off-springs related to my work at Delta-Science (applied research, data and life sciences) to document selected challenges I could resolve on the way. I am writing these pieces in the hope that this information may help others with similar challenges to find working solutions faster, making them more intelligible and reproducible.
+
+Understanding is a constant quest and I am grateful to the crowd wisdom of diverse communities that I can tap into (crediting and thanking original contributions that I could replicate myself on the way).
+
+~[Artwork\ attribution:\ Freepik](https://www.flaticon.com/free-icons/sky)~
