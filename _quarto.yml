@@ -4,6 +4,8 @@ project:
 
 website:
   title: "Delta-Science-Blog"
+  site-url: https://gg-delta.github.io/Delta-Science-Blog/
+  description: "Time saving solutions in data science, programming and reproducable research"
   navbar:
     right:
       - about.qmd
@@ -13,6 +15,9 @@ website:
         href: https://www.linkedin.com/in/gernot-g-supp-3288933a/  
       - icon: github
         href: https://github.com/GG-Delta
+      - icon: rss
+        href: index.xml
+        
   page-footer:
     left: "Blog made with [Quarto](https://quarto.org/) and the caring wisdom of its community: 🤝 Thank you! 🙏"
       

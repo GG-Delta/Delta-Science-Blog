@@ -5,8 +5,10 @@ listing:
   sort: "date desc"
   type: default
   categories: true
+  feed: true
   sort-ui: false
   filter-ui: false
 page-layout: full
+comments: false
 title-block-banner: true
 ---
