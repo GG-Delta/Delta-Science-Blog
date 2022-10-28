@@ -1,10 +1,14 @@
 ---
 title: "Save time and nerves by controlling different Python versions (*pyenv*) and managing virtual environments (*virtualenvwrapper*)"
 author: "GG Supp"
-date: "2022-10-25"
+date: "2022-10-28"
 categories: [news, code, analysis]
+knitr: true
 image: "image.jpg"
 draft: true
+format:
+  html:
+    code-copy: hover
 ---
 
 # Summary
@@ -33,26 +37,90 @@ I wrote this summary using macOS (version: 12.6), but you should be able to foll
 
 # Overview
 
-We'll go through three main steps. The list below is intended to provide you with a high-level overview. Each of the three main steps will be explained in the following paragraphs:
+We'll go through three main steps. The list below is intended to provide you with a high-level overview. Each of the three main steps will be explained in detail in the next section (see Details):
 
-1.  **Install the** ***homebrew*** **package manager** (macOS/Linux) \
+1.  **Install the** ***homebrew*** **package manager** (macOS/Linux)\
     (If you are not sure if you have please check and eventually update it: see details below)
 
 2.  **Install** ***pyenv*** (using *homebrew*)
 
     a.  Running the installation command in the terminal
+
     b.  Configure your terminal (setup your .zsrh file for *pyenv*)
+
     c.  Using *pyenv* to install a new Python version (in addition to your system Python version)
+
     d.  Switching between the availability of different Python versions
 
-```{=html}
-<!-- -->
-```
-3.  **Install** ***virtualenvwrapper*** using your system Python version \
+::: {.callout-tip icon="false" collapse="true"}
+## About: *pyenv*
+
+The library *pyenv* is a wonderful tool that allows you to control and switch between all different Python versions installed on your computer. Each new Python version you install using pyenv will be neatly isolated from all other versions; this is equally and importantly true for the system Python version that comes pre-installed on macOS (located in `/usr/bin/python3`). In this way you can also make sure you don't mess with this system Python version that is a constituting part of your operating system. That is, your computer depends on it. A great summary about *pyenv* can be found here \[[\*](https://realpython.com/intro-to-pyenv/)\].
+:::
+
+3.  **Install *virtualenvwrapper*** using your system Python version\
     (and its associated *pip* version)
 
     a.  Running the installation command in the terminal
+
     b.  Configure your terminal to load the *virtualenvwrapper* commands
+
     c.  Setup a new virtual environment on the basis of a specific Python version
 
+::: {.callout-tip collapse="true" icon="false"}
+## About: *virtualenvwrapper*
+
+Using callouts is an effective way to highlight content that your reader give special consideration or attention.
+:::
+
 ------------------------------------------------------------------------
+
+# Details
+
+## 1. Install the *homebrew* package manager
+
+As a first step you should install [homebrew](https://brew.sh/) which is a very useful and straightforward package manager (for macOS/Linux). In order to enter the code below open a terminal window (you can do this by opening macOS spotlight - or via your keyboard: just hit both keys *command* plus *space* at once - type "terminal" and open this application).
+
+Now that you have your terminal window open, you can enter the following commands shown below (select the commands matching your case):
+
+::: panel-tabset
+## Install homebrew
+
+To install *homebrew* on your computer: paste this command in your terminal window and hit *enter.* After hitting *enter* the script will explain what it will do and then pauses before it does it:
+
+``` default
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)
+```
+
+## Check homebrew (installed/version)
+
+To verify and check whether you have *homebrew* already installed you can enter the command. shown below. In the case you have homebrew installed the output will tell you which version it is. If you don't have it installed yet, the output will tell you something like `command not found`.
+
+``` default
+brew --version
+```
+
+Example output in case your computer has *homebrew* installed (your version might differ):
+
+``` default
+Homebrew 3.6.6 
+Homebrew/homebrew-core (git revision 7ec3c2d24e8; last commit 2022-10-24) 
+Homebrew/homebrew-cask (git revision c3048a8013; last commit 2022-10-24)
+```
+
+## Update homebrew
+
+After having verified that your computer has *homebrew installed*, update it to make sure you have the latest version. Just enter the following command in your terminal window and hit enter \[[\*](https://docs.brew.sh/FAQ)\].
+
+``` default
+brew update
+```
+:::
+
+## 2. Install *pyenv* (via *homebrew*)
+
+2a: Run the following installation command in the terminal \[[\*](https://docs.brew.sh/FAQ)\].
+
+``` default
+brew install pyenv
+```
