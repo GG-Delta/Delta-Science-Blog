@@ -13,5 +13,8 @@
   },
   "posts/post-with-code2/index.qmd": {
     "index.html": "d45767aa"
+  },
+  "drafts/draft_01.md": {
+    "draft_01.html": "b3139a30"
   }
 }

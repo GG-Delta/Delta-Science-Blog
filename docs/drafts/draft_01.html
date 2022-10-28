@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.189">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Delta-Science-Blog – draft_01</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Delta-Science-Blog</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html">About</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://delta-science.eu"><i class="bi bi-house-heart" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/gernot-g-supp-3288933a/"><i class="bi bi-linkedin" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/GG-Delta"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../index.xml"><i class="bi bi-rss" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="once-and-for-all-save-time-engergy-and-nerves-in-the-long-run-by-controlling-different-python-versions-using-pyenv-and-managing-virtual-environments-using-virtualenvwrapper" class="level4">
+<h4 class="anchored" data-anchor-id="once-and-for-all-save-time-engergy-and-nerves-in-the-long-run-by-controlling-different-python-versions-using-pyenv-and-managing-virtual-environments-using-virtualenvwrapper">Once and for all: Save time, engergy and nerves in the long run by controlling different Python versions (using pyenv) and managing virtual environments (using virtualenvwrapper)</h4>
+<p><strong>Summary</strong> (Context/Motivation/Problem/Solution) Most people’s computers have multiple Python versions installed (Macs come with Python pre-installed, often termed system Python). Keeping these versions (the pre-installed system Python version and other user-installed Python versions) separate and controlling them independently (e.g.&nbsp;installing or updating a given Python package for a specific Phython version only) requires an upfront solution. Working with virtual environments, i.e.&nbsp;having a separate workspace for each individual project, necessitates actively defining the Python version that will be used to create a specific virtual environment. Controlling Python versions is thus linked to the task of managing virtual environments. All packages installed in a specific virtual environment will not conflict with other virtual environments (all packages being contained in that particular workspace). Following the steps outlined below, your computer should be in a state where different Python versions coexist peacefully and where you can safely install, upgrade, or remove libraries without affecting other projects. In fact, a working setup that is simple to maintain.</p>
+<p><strong>Introduction</strong></p>
+<p>A certainty, especially in the world of programming, is that there are numerous paths to the same destination.</p>
+<p>As a result, there is a plethora of advice available on how to arrive at a working (and hopefully maintainable) setup of a local computer to do data science using Python.</p>
+<p>Speaking from personal experience, I was always too busy doing the actual work to contemplate about the “ideal” setup, so I decided for the moment to ignore any best practices that might exist somewhere. Besides, given the vast amount of information available, determining the right blueprint to follow is not an easy task (just considering the combinatorial nightmare of different operating systems, python versions, installed or assumed pre-installed software, various IDEs etc etc). In short, there are many flying pieces and thus many degrees of freedom, which inevitably leads to complexity.</p>
+<p>However, sooner or later the day always comes when you can’t afford to ignore the Python setup issue any longer simply because something broke (e.g.&nbsp;after installing a new Python package or upgrading an installed one). From that moment on you will be busy finding a way to continue your work. Sometimes a quick fix is possible (after consulting numerous entries at Stack Overflow or similar websites), but sometimes band-aid is not enough, so that you need a fundamental solution.</p>
+<p>In order to spare you time, research effort and hopefully some nerves I will consicly summarize all steps that resulted into my tested setup. Each step builds on different sources of advice that I will cite along the way (i.e.&nbsp;credits, attribution and thanks are given by explicit references).</p>
+<p>I wrote this summary using macOS (version: 12.6), but you should be able to follow equivalent steps on Linux or Windows (you might need to make some modifications).</p>
+<p>One last word before going into the details: I mentioned the term “fundamental solution” for a reason: in case you got totally lost with quick fixes that resulted in even more problems later on a fresh installation of the operating system is a radical approach. However, it provides a clean start from where you can begin building your new robust setup that is maintainable for all your future projects. I wrote the following lines with a fresh installation of the operating system in mind:</p>
+<p><strong>Brief overview</strong></p>
+<p>We’ll go through three main steps below. The following list is intended to provide you with a high-level overview. Each of the three main steps will be explained in the following paragraphs:</p>
+<p><strong>1.</strong> <strong>Install the <em>homebrew</em> package manager</strong> (if you are not sure if you have it check it and eventually update it)</p>
+<p><strong>2.</strong> <strong>Install <em>pyenv</em></strong> (using homebrew)</p>
+<ul>
+<li><ol type="a">
+<li>Running the installation command in the terminal<br>
+</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>Configure your terminal: setup your .zsrh file for pyenv</li>
+</ol></li>
+<li><ol start="3" type="a">
+<li>Using <em>pyenv</em> to install a new Python version (in addition to your system Python version)</li>
+</ol></li>
+<li><ol start="4" type="a">
+<li>Switching between the availability of different Python versions</li>
+</ol></li>
+</ul>
+<p><strong>3.</strong> <strong>Install <em>virtualenwrapper</em></strong> using your system Python version (and its associated pip version)</p>
+<ul>
+<li><ol type="a">
+<li>Running the installation command in the terminal</li>
+</ol></li>
+<li><ol start="2" type="a">
+<li>Configure your terminal to load the <em>virtualenvwrapper</em> commands</li>
+</ol></li>
+<li><ol start="3" type="a">
+<li>Setup a new virtual envrionment on the basis of a specific Python version</li>
+</ol></li>
+</ul>
+<hr>
+<p>— title: “Save time and nerves by controlling different Python versions (<em>pyenv</em>) and managing virtual environments (<em>virtualenvwrapper</em>)” author: “GG Supp” date: “2022-10-25” categories: [news, code, analysis] image: “image.jpg” format: html: code-copy: true draft: true —</p>
+</section>
+<section id="summary" class="level1">
+<h1>Summary</h1>
+<p>Most people’s computers have multiple Python versions installed (Macs come with Python pre-installed, often termed system Python). Keeping these versions (the pre-installed system Python version and other user-installed Python versions) separate and controlling them independently (e.g.&nbsp;installing or updating a given Python package for a specific Phython version only) requires an upfront solution. Working with virtual environments, i.e.&nbsp;having a separate workspace for each individual project, necessitates actively defining the Python version that will be used to create a specific virtual environment. Controlling Python versions is thus linked to the task of managing virtual environments. All packages installed in a specific virtual environment will not conflict with other virtual environments (all packages being contained in that particular workspace).</p>
+<p>Following the steps outlined here below, your computer should be in a state where different Python versions coexist peacefully and where you can safely install, upgrade, or remove libraries without affecting other projects. In fact, a working setup that is simple to maintain.</p>
+</section>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>A certainty, especially in the world of programming, is that there are numerous paths to the same destination. As a result, there is a plethora of advice available on how to arrive at a working (and hopefully maintainable) setup of a local computer to do data science using Python.</p>
+<p>Speaking from personal experience, I was always too busy doing the actual work to contemplate about the “ideal” setup, so I decided for the moment to ignore any best practices that might exist somewhere. Besides, given the vast amount of information available, determining the right blueprint to follow is not an easy task (just considering the combinatorial nightmare of different operating systems, python versions, installed or assumed pre-installed software, various IDEs etc etc). In short, there are many flying pieces and thus many degrees of freedom, which inevitably leads to complexity.</p>
+<p>However, sooner or later the day always comes when you can’t afford to ignore the Python setup issue any longer simply because something broke (e.g.&nbsp;after installing a new Python package or upgrading an installed one). From that moment on you will be busy finding a way to continue your work. Sometimes a quick fix is possible (after consulting numerous entries at Stack Overflow or similar websites), but sometimes band-aid is not enough, so that you need a fundamental solution.</p>
+<p>In order to spare you time, research effort and hopefully some nerves I will consicly summarize all steps that resulted into my tested setup. Each step builds on different sources of advice that I will cite along the way (i.e.&nbsp;credits, attribution and thanks are given by explicit references).</p>
+<p>I used the phrase “fundamental solution” above for a reason: in case you got totally lost with quick fixes that resulted in even more problems later on a fresh installation of the operating system is certainly a radical approach. However, it provides a clean start from where you can begin building your new robust setup that is maintainable for all your future projects. I wrote the following lines with a fresh installation of the operating system in mind.</p>
+<p>I wrote this summary using macOS (version: 12.6), but you should be able to follow equivalent steps on Linux or Windows (you might need to make some modifications).</p>
+</section>
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<p>We’ll go through three main steps. The list below is intended to provide you with a high-level overview. Each of the three main steps will be explained in the following paragraphs:</p>
+<ol type="1">
+<li><strong>Install the</strong> <strong><em>homebrew</em></strong> <strong>package manager</strong> (macOS/Linux) (if you are not sure if you have please check and eventually update it: see details below)</li>
+<li><strong>Install</strong> <strong><em>pyenv</em></strong> (using <em>homebrew</em>)
+<ol type="1">
+<li>Running the installation command in the terminal</li>
+<li>Configure your terminal (setup your .zsrh file for <em>pyenv</em>)</li>
+<li>Using <em>pyenv</em> to install a new Python version (in addition to your system Python version)</li>
+<li>Switching between the availability of different Python versions</li>
+</ol></li>
+</ol>
+<!-- -->
+<ol type="1">
+<li><strong>Install</strong> <strong><em>virtualenvwrapper</em></strong> using your system Python version (and its associated <em>pip</em> version)
+<ol type="1">
+<li>Running the installation command in the terminal</li>
+<li>Configure your terminal to load the <em>virtualenvwrapper</em> commands</li>
+<li>Setup a new virtual environment on the basis of a specific Python version</li>
+</ol></li>
+</ol>
+</section>
+<section id="details" class="level1">
+<h1>Details</h1>
+<section id="install-the-homebrew-package-manager" class="level2">
+<h2 class="anchored" data-anchor-id="install-the-homebrew-package-manager">1. Install the <em>homebrew</em> package manager</h2>
+<p>As a first step you should install <a href="https://brew.sh/">homebrew</a> which is a very useful and straightforward package manager (for macOS/Linux). In order to enter the code below open a terminal window (you can do this by opening macOS spotlight - or via your keyboard: just hit both keys <em>command</em> plus <em>space</em> at once - type “terminal” and open this application).</p>
+<p>Now that you have your terminal window open, you can enter the following commands shown below:</p>
+</section>
+<section id="install-homebrew" class="level2">
+<h2 class="anchored" data-anchor-id="install-homebrew">Install homebrew</h2>
+<p>To install <em>homebrew</em> on your computer: paste this command in your terminal window and hit <em>enter.</em> After hitting <em>enter</em> the script will explain what it will do and then pauses before it does it:</p>
+<p>{default} /bin/bash -c “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)”</p>
+</section>
+<section id="check-homebrew-installedversion" class="level2">
+<h2 class="anchored" data-anchor-id="check-homebrew-installedversion">Check homebrew (installed/version)</h2>
+<p>To verify and check whether you have <em>homebrew</em> already installed you can the following command. In case you have homebrew installed the output will tell you which version it is. If you don’t have it installed yet, the output will tell you something like <code>command not found</code>.</p>
+<p>{default} brew –version</p>
+<p>Example output in case your computer has <em>homebrew</em> installed (your version might differ):</p>
+<p>{default} Homebrew 3.6.6 Homebrew/homebrew-core (git revision 7ec3c2d24e8; last commit 2022-10-24) Homebrew/homebrew-cask (git revision c3048a8013; last commit 2022-10-24)</p>
+</section>
+<section id="update-homebrew" class="level2">
+<h2 class="anchored" data-anchor-id="update-homebrew">Update homebrew</h2>
+<p>After having verified that your computer has <em>homebrew installed</em>, update it to make sure you have the latest version. Just enter the following command in your terminal window and hit enter [<a href="https://docs.brew.sh/FAQ">*</a>].</p>
+<p>{default}</p>
+</section>
+<section id="install-pyenv-via-homebrew" class="level2">
+<h2 class="anchored" data-anchor-id="install-pyenv-via-homebrew">2. Install <em>pyenv</em> (via <em>homebrew</em>)</h2>
+<hr>
+<p>Total OLD</p>
+<p>— title: “Save time and nerves by controlling different Python versions (<em>pyenv</em>) and managing virtual environments (<em>virtualenvwrapper</em>)” author: “GG Supp” date: “2022-10-25” categories: [news, code, analysis] image: “image.jpg” draft: true —</p>
+</section>
+</section>
+<section id="summary-1" class="level1">
+<h1>Summary</h1>
+<p>Most people’s computers have multiple Python versions installed (Macs come with Python pre-installed, often termed system Python). Keeping these versions (the pre-installed system Python version and other user-installed Python versions) separate and controlling them independently (e.g.&nbsp;installing or updating a given Python package for a specific Phython version only) requires an upfront solution. Working with virtual environments, i.e.&nbsp;having a separate workspace for each individual project, necessitates actively defining the Python version that will be used to create a specific virtual environment. Controlling Python versions is thus linked to the task of managing virtual environments. All packages installed in a specific virtual environment will not conflict with other virtual environments (all packages being contained in that particular workspace).</p>
+<p>Following the steps outlined here below, your computer should be in a state where different Python versions coexist peacefully and where you can safely install, upgrade, or remove libraries without affecting other projects. In fact, a working setup that is simple to maintain.</p>
+</section>
+<section id="introduction-1" class="level1">
+<h1>Introduction</h1>
+<p>A certainty, especially in the world of programming, is that there are numerous paths to the same destination. As a result, there is a plethora of advice available on how to arrive at a working (and hopefully maintainable) setup of a local computer to do data science using Python.</p>
+<p>Speaking from personal experience, I was always too busy doing the actual work to contemplate about the “ideal” setup, so I decided for the moment to ignore any best practices that might exist somewhere. Besides, given the vast amount of information available, determining the right blueprint to follow is not an easy task (just considering the combinatorial nightmare of different operating systems, python versions, installed or assumed pre-installed software, various IDEs etc etc). In short, there are many flying pieces and thus many degrees of freedom, which inevitably leads to complexity.</p>
+<p>However, sooner or later the day always comes when you can’t afford to ignore the Python setup issue any longer simply because something broke (e.g.&nbsp;after installing a new Python package or upgrading an installed one). From that moment on you will be busy finding a way to continue your work. Sometimes a quick fix is possible (after consulting numerous entries at Stack Overflow or similar websites), but sometimes band-aid is not enough, so that you need a fundamental solution.</p>
+<p>In order to spare you time, research effort and hopefully some nerves I will consicly summarize all steps that resulted into my tested setup. Each step builds on different sources of advice that I will cite along the way (i.e.&nbsp;credits, attribution and thanks are given by explicit references).</p>
+<p>I used the phrase “fundamental solution” above for a reason: in case you got totally lost with quick fixes that resulted in even more problems later on a fresh installation of the operating system is certainly a radical approach. However, it provides a clean start from where you can begin building your new robust setup that is maintainable for all your future projects. I wrote the following lines with a fresh installation of the operating system in mind.</p>
+<p>I wrote this summary using macOS (version: 12.6), but you should be able to follow equivalent steps on Linux or Windows (you might need to make some modifications).</p>
+</section>
+<section id="overview-1" class="level1">
+<h1>Overview</h1>
+<p>We’ll go through three main steps. The list below is intended to provide you with a high-level overview. Each of the three main steps will be explained in the following paragraphs:</p>
+<ol type="1">
+<li><strong>Install the</strong> <strong><em>homebrew</em></strong> <strong>package manager</strong> (macOS/Linux) (if you are not sure if you have please check and eventually update it: see details below)</li>
+<li><strong>Install</strong> <strong><em>pyenv</em></strong> (using <em>homebrew</em>)
+<ol type="1">
+<li>Running the installation command in the terminal</li>
+<li>Configure your terminal (setup your .zsrh file for <em>pyenv</em>)</li>
+<li>Using <em>pyenv</em> to install a new Python version (in addition to your system Python version)</li>
+<li>Switching between the availability of different Python versions</li>
+</ol></li>
+</ol>
+<!-- -->
+<ol type="1">
+<li><strong>Install</strong> <strong><em>virtualenvwrapper</em></strong> using your system Python version (and its associated <em>pip</em> version)
+<ol type="1">
+<li>Running the installation command in the terminal</li>
+<li>Configure your terminal to load the <em>virtualenvwrapper</em> commands</li>
+<li>Setup a new virtual environment on the basis of a specific Python version</li>
+</ol></li>
+</ol>
+</section>
+<section id="details-1" class="level1">
+<h1>Details</h1>
+<section id="install-the-homebrew-package-manager-1" class="level2">
+<h2 class="anchored" data-anchor-id="install-the-homebrew-package-manager-1">1. Install the <em>homebrew</em> package manager</h2>
+<p>As a first step you should install <a href="https://brew.sh/">homebrew</a> which is a very useful and straightforward package manager (for macOS/Linux). In order to enter the code below open a terminal window (you can do this by opening macOS spotlight - or via your keyboard: just hit both keys <em>command</em> plus <em>space</em> at once - type “terminal” and open this application).</p>
+<p>Now that you have your terminal window open, you can enter the following commands shown below:</p>
+</section>
+<section id="install-homebrew-1" class="level2">
+<h2 class="anchored" data-anchor-id="install-homebrew-1">Install homebrew</h2>
+<p>To install <em>homebrew</em> on your computer: paste this command in your terminal window and hit <em>enter.</em> After hitting <em>enter</em> the script will explain what it will do and then pauses before it does it:</p>
+<p>{default} /bin/bash -c “$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)”</p>
+</section>
+<section id="check-homebrew-installedversion-1" class="level2">
+<h2 class="anchored" data-anchor-id="check-homebrew-installedversion-1">Check homebrew (installed/version)</h2>
+<p>To verify and check whether you have <em>homebrew</em> already installed you can the following command. In case you have homebrew installed the output will tell you which version it is. If you don’t have it installed yet, the output will tell you something like <code>command not found</code>.</p>
+<p>{default} brew –version</p>
+<p>Example output in case your computer has <em>homebrew</em> installed (your version might differ):</p>
+<p>{default} Homebrew 3.6.6 Homebrew/homebrew-core (git revision 7ec3c2d24e8; last commit 2022-10-24) Homebrew/homebrew-cask (git revision c3048a8013; last commit 2022-10-24)</p>
+</section>
+<section id="update-homebrew-1" class="level2">
+<h2 class="anchored" data-anchor-id="update-homebrew-1">Update homebrew</h2>
+<p>After having verified that your computer has <em>homebrew installed</em>, update it to make sure you have the latest version. Just enter the following command in your terminal window and hit enter [<a href="https://docs.brew.sh/FAQ">*</a>].</p>
+<p>{default}</p>
+</section>
+<section id="install-pyenv-via-homebrew-1" class="level2">
+<h2 class="anchored" data-anchor-id="install-pyenv-via-homebrew-1">2. Install <em>pyenv</em> (via <em>homebrew</em>)</h2>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<script src="https://giscus.app/client.js" data-repo="GG-Delta/Delta-Science-Blog" data-repo-id="R_kgDOIRmvAg" data-category="General" data-category-id="DIC_kwDOIRmvAs4CSHbE" data-mapping="title" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="en" crossorigin="anonymous" async="">
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Blog made with <a href="https://quarto.org/">Quarto</a> and the caring wisdom of its community: 🤝 Thank you! 🙏</div>   
+  </div>
+</footer>
+
+
+
+</body></html>
