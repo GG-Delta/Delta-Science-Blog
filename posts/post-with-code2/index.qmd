@@ -79,7 +79,7 @@ Using callouts is an effective way to highlight content that your reader give sp
 
 ## 1. Install the *homebrew* package manager
 
-As a first step you should install [homebrew](https://brew.sh/) which is a very useful and straightforward package manager (for macOS/Linux). In order to enter the code below open a terminal window (you can do this by opening macOS spotlight - or via your keyboard: just hit both keys *command* plus *space* at once - type "terminal" and open this application).
+As a first step you should install [homebrew](https://brew.sh/) which is a very useful and straightforward package manager (for macOS/Linux). In order to enter the code below open a terminal window (you can do this by opening macOS spotlight - or via your keyboard: just hit both keys *`command`* + *`space`* at once - then type "terminal" and open this application).
 
 Now that you have your terminal window open, you can enter the following commands shown below (select the commands matching your case):
 
@@ -119,8 +119,98 @@ brew update
 
 ## 2. Install *pyenv* (via *homebrew*)
 
-2a: Run the following installation command in the terminal \[[\*](https://docs.brew.sh/FAQ)\].
+**2a:** Run the following installation command in the terminal \[[\*](https://github.com/pyenv/pyenv#homebrew-in-macos)\].
 
 ``` default
 brew install pyenv
 ```
+
+**2b:** Now you need to configure your terminal (or shell) in a way so that the *pyenv* commands will be loaded. You do this by editing the configuration file of your terminal represented by `.zshrc`, `.bashrc` or other file types (sometimes subsumed under the term "shell's rc file", the affix means \"run commands\"). Given that macOS default is based on the `zsh` Unix shell - also known as Z shell - we will focus to edit only this configuration file (for other options please see this manual: \[[\*](https://github.com/pyenv/pyenv#set-up-your-shell-environment-for-pyenv)\]). The configuration file for `zsh` is called `.zshrc` and is located in your home folder (`~/.zshrc`).
+
+Before editing it we should make sure that the hidden file `.zshrc` is actually there:
+
+::: panel-tabset
+## Check if `.zshrc` file is there (via Finder)
+
+To view the hidden `.zshrc` file in your home directory you can do the following within macOS Finder: Open Finder and navigate to your home directory (e.g, something like `/Users/MyUserName/`): hit the following keys at once: *`Command`* + *`Shift`* +*`.`*
+
+Using this command you told Finder to display usually hidden files (starting with a dot). If you see the file within Finder you can open it by selecting any text editing application (e.g. TextEdit). In case there is no such `.zshrc` file in your home directory, please create one: just see the instructions in this section (tab).
+
+## Check if `.zshrc` file is there (via Terminal)
+
+Open a terminal window (the hidden file should be located in your home folder: something like `/Users/MyUserName/`) and enter the following command:
+
+``` default
+open ~/.zshrc
+```
+
+In case this file doesn't exist you will receive a respective feedback ("file doesn't exist"). In case there is no such `.zshrc` file in your home directory, please create one: just see the instructions in this section (tab).
+
+## Create `.zshrc` file (if its not there)
+
+Within your terminal window enter the following command:
+
+``` default
+touch ~/.zshrc
+```
+
+The operation starting with `touch` will create the hidden `.zshrc` file in your home. You can verify the creation of this file by following one of the options shown in this section before (see tab).
+:::
+
+Since we made sure that the configuration file for our shell is indeed (i.e., the `.zshrc` file) available we can now to add the following three expressions to this configuration file. Adding these modifications to your shell's configuration:
+
+``` default
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
+echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
+echo 'eval "$(pyenv init -)"' >> ~/.zshrc   
+```
+
+After having executed these commands your `.zshrc` file will have three new lines included.
+
+::: {.callout-note collapse="true"}
+## Note
+
+You can verify the successful installation and setup of *pyenv* by entering the following command in your terminal window:
+
+``` default
+pyenv
+```
+
+If all went fine you should receive the output of the actual version of *pyenv* installed. In my case the output is as follows:
+
+``` default
+pyenv 2.3.5
+```
+
+In addition, you should see a list of command options (e.g. "\--version", "commands", "exec" and several more).
+
+You can get an overview about all installed Python versions entering the following *pyenv* command:
+
+``` default
+pyenv versions
+```
+
+Since we haven't yet installed any additional Python version *pyenv* will show you the system Python version (pre-installed on our macOS): you will see something like this (exemplary output):
+
+``` default
+  * system (set by /Users/MyUserName/.pyenv/version)
+```
+
+Given that no other version of Python is installed *pyenv* is enlisting the Python system version. The star \* symbol identifies the Python version set to be global, that is the Python version that serves as the default version of Python which macOS uses when running Python applications.
+
+You can use the following command to confirm the location of the Python system version:
+
+``` default
+pyenv which python3
+```
+
+This will show the following output:
+
+``` default
+/usr/bin/python3
+```
+
+This shows the actual path to your system Python version.
+
+You might be tempted to enter the traditional terminal command `which python3` to locate the Python's location. However, this command will reveal only the *pyenv* path modifications inserted in your shell's configuration. In fact you will see something like this: `/Users/MyUserName/.pyenv/shims/python3`
+:::

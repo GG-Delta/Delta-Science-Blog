@@ -75,9 +75,7 @@ We'll go through three main steps. The list below is intended to provide you wit
    3. Using *pyenv* to install a new Python version (in addition to your system Python version)
    4. Switching between the availability of different Python versions
 
-<!-- -->
-
-1. **Install** ***virtualenvwrapper*** using your system Python version (and its associated *pip* version)
+3. **Install** ***virtualenvwrapper*** using your system Python version (and its associated *pip* version)
    1. Running the installation command in the terminal
    2. Configure your terminal to load the *virtualenvwrapper* commands
    3. Setup a new virtual environment on the basis of a specific Python version

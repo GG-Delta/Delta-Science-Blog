@@ -307,7 +307,7 @@ About: <em>virtualenvwrapper</em>
 <h1>Details</h1>
 <section id="install-the-homebrew-package-manager" class="level2">
 <h2 class="anchored" data-anchor-id="install-the-homebrew-package-manager">1. Install the <em>homebrew</em> package manager</h2>
-<p>As a first step you should install <a href="https://brew.sh/">homebrew</a> which is a very useful and straightforward package manager (for macOS/Linux). In order to enter the code below open a terminal window (you can do this by opening macOS spotlight - or via your keyboard: just hit both keys <em>command</em> plus <em>space</em> at once - type “terminal” and open this application).</p>
+<p>As a first step you should install <a href="https://brew.sh/">homebrew</a> which is a very useful and straightforward package manager (for macOS/Linux). In order to enter the code below open a terminal window (you can do this by opening macOS spotlight - or via your keyboard: just hit both keys <em><code>command</code></em> + <em><code>space</code></em> at once - then type “terminal” and open this application).</p>
 <p>Now that you have your terminal window open, you can enter the following commands shown below (select the commands matching your case):</p>
 <div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Install homebrew</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Check homebrew (installed/version)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Update homebrew</a></li></ul>
@@ -333,8 +333,65 @@ About: <em>virtualenvwrapper</em>
 </section>
 <section id="install-pyenv-via-homebrew" class="level2">
 <h2 class="anchored" data-anchor-id="install-pyenv-via-homebrew">2. Install <em>pyenv</em> (via <em>homebrew</em>)</h2>
-<p>2a: Run the following installation command in the terminal [<a href="https://docs.brew.sh/FAQ">*</a>].</p>
+<p><strong>2a:</strong> Run the following installation command in the terminal [<a href="https://github.com/pyenv/pyenv#homebrew-in-macos">*</a>].</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>brew install pyenv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>2b:</strong> Now you need to configure your terminal (or shell) in a way so that the <em>pyenv</em> commands will be loaded. You do this by editing the configuration file of your terminal represented by <code>.zshrc</code>, <code>.bashrc</code> or other file types (sometimes subsumed under the term “shell’s rc file”, the affix means "run commands"). Given that macOS default is based on the <code>zsh</code> Unix shell - also known as Z shell - we will focus to edit only this configuration file (for other options please see this manual: [<a href="https://github.com/pyenv/pyenv#set-up-your-shell-environment-for-pyenv">*</a>]). The configuration file for <code>zsh</code> is called <code>.zshrc</code> and is located in your home folder (<code>~/.zshrc</code>).</p>
+<p>Before editing it we should make sure that the hidden file <code>.zshrc</code> is actually there:</p>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Check if <code>.zshrc</code> file is there (via Finder)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Check if <code>.zshrc</code> file is there (via Terminal)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Create <code>.zshrc</code> file (if its not there)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p>To view the hidden <code>.zshrc</code> file in your home directory you can do the following within macOS Finder: Open Finder and navigate to your home directory (e.g, something like <code>/Users/MyUserName/</code>): hit the following keys at once: <em><code>Command</code></em> + <em><code>Shift</code></em> +<em><code>.</code></em></p>
+<p>Using this command you told Finder to display usually hidden files (starting with a dot). If you see the file within Finder you can open it by selecting any text editing application (e.g.&nbsp;TextEdit). In case there is no such <code>.zshrc</code> file in your home directory, please create one: just see the instructions in this section (tab).</p>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p>Open a terminal window (the hidden file should be located in your home folder: something like <code>/Users/MyUserName/</code>) and enter the following command:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>open ~/.zshrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In case this file doesn’t exist you will receive a respective feedback (“file doesn’t exist”). In case there is no such <code>.zshrc</code> file in your home directory, please create one: just see the instructions in this section (tab).</p>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<p>Within your terminal window enter the following command:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>touch ~/.zshrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The operation starting with <code>touch</code> will create the hidden <code>.zshrc</code> file in your home. You can verify the creation of this file by following one of the options shown in this section before (see tab).</p>
+</div>
+</div>
+</div>
+<p>Since we made sure that the configuration file for our shell is indeed (i.e., the <code>.zshrc</code> file) available we can now to add the following three expressions to this configuration file. Adding these modifications to your shell’s configuration:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>echo 'export PYENV_ROOT="$HOME/.pyenv"' &gt;&gt; ~/.zshrc</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>echo 'command -v pyenv &gt;/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' &gt;&gt; ~/.zshrc</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>echo 'eval "$(pyenv init -)"' &gt;&gt; ~/.zshrc   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>After having executed these commands your <code>.zshrc</code> file will have three new lines included.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>You can verify the successful installation and setup of <em>pyenv</em> by entering the following command in your terminal window:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pyenv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If all went fine you should receive the output of the actual version of <em>pyenv</em> installed. In my case the output is as follows:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pyenv 2.3.5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In addition, you should see a list of command options (e.g.&nbsp;“--version”, “commands”, “exec” and several more).</p>
+<p>You can get an overview about all installed Python versions entering the following <em>pyenv</em> command:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pyenv versions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Since we haven’t yet installed any additional Python version <em>pyenv</em> will show you the system Python version (pre-installed on our macOS): you will see something like this (exemplary output):</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>  * system (set by /Users/MyUserName/.pyenv/version)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Given that no other version of Python is installed <em>pyenv</em> is enlisting the Python system version. The star * symbol identifies the Python version set to be global, that is the Python version that serves as the default version of Python which macOS uses when running Python applications.</p>
+<p>You can use the following command to confirm the location of the Python system version:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pyenv which python3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This will show the following output:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>/usr/bin/python3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This shows the actual path to your system Python version.</p>
+<p>You might be tempted to enter the traditional terminal command <code>which python3</code> to locate the Python’s location. However, this command will reveal only the <em>pyenv</em> path modifications inserted in your shell’s configuration. In fact you will see something like this: <code>/Users/MyUserName/.pyenv/shims/python3</code></p>
+</div>
+</div>
+</div>
 
 
 </section>
