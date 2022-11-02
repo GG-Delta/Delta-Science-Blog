@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="GG Supp">
-<meta name="dcterms.date" content="2022-10-28">
+<meta name="dcterms.date" content="2022-11-01">
 
-<title>Delta-Science-Blog - Save time and nerves by controlling different Python versions (pyenv) and managing virtual environments (virtualenvwrapper)</title>
+<title>Delta-Science-Blog - Save time &amp; nerves: start controlling different Python versions (pyenv) and managing virtual environments (virtualenvwrapper)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -177,7 +177,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Save time and nerves by controlling different Python versions (<em>pyenv</em>) and managing virtual environments (<em>virtualenvwrapper</em>)</h1>
+      <h1 class="title">Save time &amp; nerves: start controlling different Python versions (<em>pyenv</em>) and managing virtual environments (<em>virtualenvwrapper</em>)</h1>
                                 <div class="quarto-categories">
                 <div class="quarto-category">news</div>
                 <div class="quarto-category">code</div>
@@ -199,7 +199,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">October 28, 2022</p>
+        <p class="date">November 1, 2022</p>
       </div>
     </div>
       
@@ -218,7 +218,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="summary" class="level1">
 <h1>Summary</h1>
-<p>Most people’s computers have multiple Python versions installed (Macs come with Python pre-installed, often termed system Python). Keeping these versions (the pre-installed system Python version and other user-installed Python versions) separate and controlling them independently (e.g.&nbsp;installing or updating a given Python package for a specific Python version only) requires an upfront solution. Working with virtual environments, i.e.&nbsp;having a separate work-space for each individual project, necessitates actively defining the Python version that will be used to create a specific virtual environment. Controlling Python versions is thus linked to the task of managing virtual environments. All packages installed in a specific virtual environment will not conflict with other virtual environments (all packages being contained in that particular work-space).</p>
+<p>Most people’s computers have multiple Python versions installed (Macs come with Python pre-installed, often termed system Python). Keeping these versions (the pre-installed system Python version and other user-installed Python versions) separate and controlling them independently (e.g.&nbsp;installing or updating a given Python package for a specific Python version only) requires an upfront solution. Working with virtual environments, i.e.&nbsp;having a separate workspace for each individual project, necessitates actively defining the Python version that will be used to create a specific virtual environment. Controlling Python versions is thus linked to the task of managing virtual environments. All packages installed in a specific virtual environment will not conflict with other virtual environments (all packages being contained in that particular workspace).</p>
 <p>Following the steps outlined here below, your computer should be in a state where different Python versions coexist peacefully and where you can safely install, upgrade, or remove libraries without affecting other projects. In fact, a working setup that is simple to maintain.</p>
 </section>
 <section id="introduction" class="level1">
@@ -248,7 +248,7 @@ Note
 </section>
 <section id="overview" class="level1">
 <h1>Overview</h1>
-<p>We’ll go through three main steps. The list below is intended to provide you with a high-level overview. Each of the three main steps will be explained in detail in the next section (see Details):</p>
+<p>We’ll go through three main steps. The list below is intended to provide you with a high-level overview. Each of the three main steps will be explained in detail in the next sections (see Details):</p>
 <ol type="1">
 <li><p><strong>Install the</strong> <strong><em>homebrew</em></strong> <strong>package manager</strong> (macOS/Linux)<br>
 (If you are not sure if you have please check and eventually update it: see details below)</p></li>
@@ -257,7 +257,7 @@ Note
 <li><p>Running the installation command in the terminal</p></li>
 <li><p>Configure your terminal (setup your .zsrh file for <em>pyenv</em>)</p></li>
 <li><p>Using <em>pyenv</em> to install a new Python version (in addition to your system Python version)</p></li>
-<li><p>Switching between the availability of different Python versions</p></li>
+<li><p>Switching between different Python versions available/installed on your computer</p></li>
 </ol></li>
 </ol>
 <div class="callout-tip callout callout-style-default no-icon callout-captioned">
@@ -297,7 +297,7 @@ About: <em>virtualenvwrapper</em>
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Using callouts is an effective way to highlight content that your reader give special consideration or attention.</p>
+<p>The library <em>virtualenvwrapper</em> is extremely useful tool to create and manage (such as activating/deactivating) virtual environments? Why should we care about virtual environments? The main reason is that virtual environments represent independent, totally separate workspaces for individual projects: any package installed in a given workspace will not interfere with the ones installed in other workspaces. Thus, in this way you are able to install different versions of the same package for each of your projects. This would be impossible when all of your projects’ requirements (i.e.&nbsp;packages) were installed in the very same environment. Please find a fine and elaborate summary about this tool here [<a href="https://opensource.com/article/21/2/python-virtualenvwrapper">*</a>].</p>
 </div>
 </div>
 </div>
@@ -338,7 +338,7 @@ About: <em>virtualenvwrapper</em>
 <p><strong>2b:</strong> Now you need to configure your terminal (or shell) in a way so that the <em>pyenv</em> commands will be loaded. You do this by editing the configuration file of your terminal represented by <code>.zshrc</code>, <code>.bashrc</code> or other file types (sometimes subsumed under the term “shell’s rc file”, the affix means "run commands"). Given that macOS default is based on the <code>zsh</code> Unix shell - also known as Z shell - we will focus to edit only this configuration file (for other options please see this manual: [<a href="https://github.com/pyenv/pyenv#set-up-your-shell-environment-for-pyenv">*</a>]). The configuration file for <code>zsh</code> is called <code>.zshrc</code> and is located in your home folder (<code>~/.zshrc</code>).</p>
 <p>Before editing it we should make sure that the hidden file <code>.zshrc</code> is actually there:</p>
 <div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Check if <code>.zshrc</code> file is there (via Finder)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Check if <code>.zshrc</code> file is there (via Terminal)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Create <code>.zshrc</code> file (if its not there)</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Check <code>.zshrc</code> via Finder</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Check <code>.zshrc</code> via Terminal</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Create <code>.zshrc</code> file (if its not there)</a></li></ul>
 <div class="tab-content">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <p>To view the hidden <code>.zshrc</code> file in your home directory you can do the following within macOS Finder: Open Finder and navigate to your home directory (e.g, something like <code>/Users/MyUserName/</code>): hit the following keys at once: <em><code>Command</code></em> + <em><code>Shift</code></em> +<em><code>.</code></em></p>
@@ -352,11 +352,11 @@ About: <em>virtualenvwrapper</em>
 <div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
 <p>Within your terminal window enter the following command:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>touch ~/.zshrc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The operation starting with <code>touch</code> will create the hidden <code>.zshrc</code> file in your home. You can verify the creation of this file by following one of the options shown in this section before (see tab).</p>
+<p>The operation starting with <code>touch</code> will create the hidden <code>.zshrc</code> file in your home directory. You can verify the creation of this file by following one of the options shown in this section (see other tabs).</p>
 </div>
 </div>
 </div>
-<p>Since we made sure that the configuration file for our shell is indeed (i.e., the <code>.zshrc</code> file) available we can now to add the following three expressions to this configuration file. Adding these modifications to your shell’s configuration:</p>
+<p>Since we made sure that the configuration file for our shell is indeed available (i.e., the <code>.zshrc</code> file) we can now add the following three expressions to this configuration file. To add these modifications to your shell’s configuration enter the following commands in your terminal:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>echo 'export PYENV_ROOT="$HOME/.pyenv"' &gt;&gt; ~/.zshrc</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>echo 'command -v pyenv &gt;/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' &gt;&gt; ~/.zshrc</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>echo 'eval "$(pyenv init -)"' &gt;&gt; ~/.zshrc   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -375,14 +375,14 @@ Note
 <div class="callout-body-container callout-body">
 <p>You can verify the successful installation and setup of <em>pyenv</em> by entering the following command in your terminal window:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pyenv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>If all went fine you should receive the output of the actual version of <em>pyenv</em> installed. In my case the output is as follows:</p>
+<p>If all went fine, you should receive the output of the actual version of <em>pyenv</em> installed. In my case the output is as follows:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pyenv 2.3.5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In addition, you should see a list of command options (e.g.&nbsp;“--version”, “commands”, “exec” and several more).</p>
-<p>You can get an overview about all installed Python versions entering the following <em>pyenv</em> command:</p>
+<p>With <em>pyenv</em> installed successfully you can get a nice overview about all installed Python versions: just enter the following <em>pyenv</em> command:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pyenv versions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Since we haven’t yet installed any additional Python version <em>pyenv</em> will show you the system Python version (pre-installed on our macOS): you will see something like this (exemplary output):</p>
+<p>Since we haven’t yet installed any additional Python version, <em>pyenv</em> will show you the system Python version (pre-installed on our macOS): you will see something like this (exemplary output):</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>  * system (set by /Users/MyUserName/.pyenv/version)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Given that no other version of Python is installed <em>pyenv</em> is enlisting the Python system version. The star * symbol identifies the Python version set to be global, that is the Python version that serves as the default version of Python which macOS uses when running Python applications.</p>
+<p>Given that no other version of Python is installed <em>pyenv</em> is enlisting the Python system version. The star * symbol marks the Python version set to be global, that is the Python version that serves as the default version of Python which macOS uses when running Python applications.</p>
 <p>You can use the following command to confirm the location of the Python system version:</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pyenv which python3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This will show the following output:</p>
@@ -392,6 +392,71 @@ Note
 </div>
 </div>
 </div>
+<p><strong>2c:</strong> We are now ready to <em>pyenv</em> in order to install a new Python version. In case you know the precise Python version you would like to install (for the sake of this example let’s say 3.10.5) simply execute the following <em>pyenv</em> command:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>pyenv install 3.10.5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To verify which Python versions are installed and available on your computer just enter the following command we saw before:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pyenv versions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This time the output should look like along these lines:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>* system (set by /Users/ggs/.pyenv/version)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  3.10.5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The output provides a list of all installed Python versions (remember the star * symbol marks the Python version set to be global).</p>
+<div class="callout-tip callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Nice to know: Which Python versions are available?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In case you would like to get a list of all Python versions that are available to be installed via <em>pyenv</em> you can use the following command (as a shortcut you can also type: <code>pyenv install -l)</code>:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>pyenv install --list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This command will give you a list of available Python versions (and additionally showing other libraries we can ignore for the moment) such as:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>Available versions:</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  2.1.3</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  2.2.3</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  2.3.7</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  3.10.5</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  3.10.6</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>  3.10.7</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<p><strong>2d:</strong> In our current example we have seen that there are two versions of Python installed on our computer. Using <em>pyenv</em> we can switch between these two Python versions, that is we can select one version and set it the global default: this global Python version will become the one macOS uses when running Python applications. Set a given Python version to global by executing the following command:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>pyenv global 3.10.5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>When running the previously shown command <code>pyenv versions</code> again we will see that the Python version marked to be global has changed accordingly (exemplary output):</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>system</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>* 3.10.5 (set by /Users/MyUserName/.pyenv/version)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As intended the star * symbol marking the Python version set as global has changed. In case you have several more Python versions installed you can change to each one of them using the <em>pyenv</em> global command shown above.</p>
+<p>You can change back to using your system Python version as the global one via the following command:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>pyenv global system</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="install-virtualenvwrapper-using-your-system-python-version-and-its-associated-pip-version" class="level2">
+<h2 class="anchored" data-anchor-id="install-virtualenvwrapper-using-your-system-python-version-and-its-associated-pip-version">3. Install <strong><em>virtualenvwrapper</em></strong> using your system Python version (and its associated <em>pip</em> version)</h2>
+<p><strong>3a:</strong> Before you continue please consider the following important requirement:</p>
+<div class="callout-important callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Important
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Before continuing with installing the <em>virtualenvwrapper</em> library make sure that your system Python version is set to global (just run the command <code>pyenv versions</code> and verify that the star * symbol is shown next to the system Python version - as detailed in step 2 above). If that is not the case, you can simply set the system Python version to global by executing this command: <code>pyenv global system</code>.</p>
+</div>
+</div>
+</div>
+<p>Being sure that you are using the correct Python version i.e.&nbsp;the system Python version, you can now run the following installation command that will install the <em>virtualenvwrapper</em> library on your computer [<a href="https://virtualenvwrapper.readthedocs.io/en/latest/install.html#basic-installation">*</a>]. Note: The usage of the <code>sudo</code> command will require that you enter your admin password before the installation can be executed:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>sudo pip3 install virtualenvwrapper</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
 </section>

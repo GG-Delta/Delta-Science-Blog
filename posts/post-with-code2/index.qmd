@@ -1,7 +1,7 @@
 ---
-title: "Save time and nerves by controlling different Python versions (*pyenv*) and managing virtual environments (*virtualenvwrapper*)"
+title: "Save time & nerves: start controlling different Python versions (*pyenv*) and managing virtual environments (*virtualenvwrapper*)"
 author: "GG Supp"
-date: "2022-10-28"
+date: "2022-11-01"
 categories: [news, code, analysis]
 knitr: true
 image: "image.jpg"
@@ -13,7 +13,7 @@ format:
 
 # Summary
 
-Most people's computers have multiple Python versions installed (Macs come with Python pre-installed, often termed system Python). Keeping these versions (the pre-installed system Python version and other user-installed Python versions) separate and controlling them independently (e.g. installing or updating a given Python package for a specific Python version only) requires an upfront solution. Working with virtual environments, i.e. having a separate work-space for each individual project, necessitates actively defining the Python version that will be used to create a specific virtual environment. Controlling Python versions is thus linked to the task of managing virtual environments. All packages installed in a specific virtual environment will not conflict with other virtual environments (all packages being contained in that particular work-space).
+Most people's computers have multiple Python versions installed (Macs come with Python pre-installed, often termed system Python). Keeping these versions (the pre-installed system Python version and other user-installed Python versions) separate and controlling them independently (e.g. installing or updating a given Python package for a specific Python version only) requires an upfront solution. Working with virtual environments, i.e. having a separate workspace for each individual project, necessitates actively defining the Python version that will be used to create a specific virtual environment. Controlling Python versions is thus linked to the task of managing virtual environments. All packages installed in a specific virtual environment will not conflict with other virtual environments (all packages being contained in that particular workspace).
 
 Following the steps outlined here below, your computer should be in a state where different Python versions coexist peacefully and where you can safely install, upgrade, or remove libraries without affecting other projects. In fact, a working setup that is simple to maintain.
 
@@ -37,7 +37,7 @@ I wrote this summary using macOS (version: 12.6), but you should be able to foll
 
 # Overview
 
-We'll go through three main steps. The list below is intended to provide you with a high-level overview. Each of the three main steps will be explained in detail in the next section (see Details):
+We'll go through three main steps. The list below is intended to provide you with a high-level overview. Each of the three main steps will be explained in detail in the next sections (see Details):
 
 1.  **Install the** ***homebrew*** **package manager** (macOS/Linux)\
     (If you are not sure if you have please check and eventually update it: see details below)
@@ -50,7 +50,7 @@ We'll go through three main steps. The list below is intended to provide you wit
 
     c.  Using *pyenv* to install a new Python version (in addition to your system Python version)
 
-    d.  Switching between the availability of different Python versions
+    d.  Switching between different Python versions available/installed on your computer
 
 ::: {.callout-tip icon="false" collapse="true"}
 ## About: *pyenv*
@@ -70,7 +70,7 @@ The library *pyenv* is a wonderful tool that allows you to control and switch be
 ::: {.callout-tip collapse="true" icon="false"}
 ## About: *virtualenvwrapper*
 
-Using callouts is an effective way to highlight content that your reader give special consideration or attention.
+The library *virtualenvwrapper* is extremely useful tool to create and manage (such as activating/deactivating) virtual environments? Why should we care about virtual environments? The main reason is that virtual environments represent independent, totally separate workspaces for individual projects: any package installed in a given workspace will not interfere with the ones installed in other workspaces. Thus, in this way you are able to install different versions of the same package for each of your projects. This would be impossible when all of your projects' requirements (i.e. packages) were installed in the very same environment. Please find a fine and elaborate summary about this tool here \[[\*](https://opensource.com/article/21/2/python-virtualenvwrapper)\].
 :::
 
 ------------------------------------------------------------------------
@@ -130,13 +130,13 @@ brew install pyenv
 Before editing it we should make sure that the hidden file `.zshrc` is actually there:
 
 ::: panel-tabset
-## Check if `.zshrc` file is there (via Finder)
+## Check `.zshrc` via Finder
 
 To view the hidden `.zshrc` file in your home directory you can do the following within macOS Finder: Open Finder and navigate to your home directory (e.g, something like `/Users/MyUserName/`): hit the following keys at once: *`Command`* + *`Shift`* +*`.`*
 
 Using this command you told Finder to display usually hidden files (starting with a dot). If you see the file within Finder you can open it by selecting any text editing application (e.g. TextEdit). In case there is no such `.zshrc` file in your home directory, please create one: just see the instructions in this section (tab).
 
-## Check if `.zshrc` file is there (via Terminal)
+## Check `.zshrc` via Terminal
 
 Open a terminal window (the hidden file should be located in your home folder: something like `/Users/MyUserName/`) and enter the following command:
 
@@ -154,10 +154,10 @@ Within your terminal window enter the following command:
 touch ~/.zshrc
 ```
 
-The operation starting with `touch` will create the hidden `.zshrc` file in your home. You can verify the creation of this file by following one of the options shown in this section before (see tab).
+The operation starting with `touch` will create the hidden `.zshrc` file in your home directory. You can verify the creation of this file by following one of the options shown in this section (see other tabs).
 :::
 
-Since we made sure that the configuration file for our shell is indeed (i.e., the `.zshrc` file) available we can now to add the following three expressions to this configuration file. Adding these modifications to your shell's configuration:
+Since we made sure that the configuration file for our shell is indeed available (i.e., the `.zshrc` file) we can now add the following three expressions to this configuration file. To add these modifications to your shell's configuration enter the following commands in your terminal:
 
 ``` default
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
@@ -176,7 +176,7 @@ You can verify the successful installation and setup of *pyenv* by entering the 
 pyenv
 ```
 
-If all went fine you should receive the output of the actual version of *pyenv* installed. In my case the output is as follows:
+If all went fine, you should receive the output of the actual version of *pyenv* installed. In my case the output is as follows:
 
 ``` default
 pyenv 2.3.5
@@ -184,19 +184,19 @@ pyenv 2.3.5
 
 In addition, you should see a list of command options (e.g. "\--version", "commands", "exec" and several more).
 
-You can get an overview about all installed Python versions entering the following *pyenv* command:
+With *pyenv* installed successfully you can get a nice overview about all installed Python versions: just enter the following *pyenv* command:
 
 ``` default
 pyenv versions
 ```
 
-Since we haven't yet installed any additional Python version *pyenv* will show you the system Python version (pre-installed on our macOS): you will see something like this (exemplary output):
+Since we haven't yet installed any additional Python version, *pyenv* will show you the system Python version (pre-installed on our macOS): you will see something like this (exemplary output):
 
 ``` default
   * system (set by /Users/MyUserName/.pyenv/version)
 ```
 
-Given that no other version of Python is installed *pyenv* is enlisting the Python system version. The star \* symbol identifies the Python version set to be global, that is the Python version that serves as the default version of Python which macOS uses when running Python applications.
+Given that no other version of Python is installed *pyenv* is enlisting the Python system version. The star \* symbol marks the Python version set to be global, that is the Python version that serves as the default version of Python which macOS uses when running Python applications.
 
 You can use the following command to confirm the location of the Python system version:
 
@@ -214,3 +214,85 @@ This shows the actual path to your system Python version.
 
 You might be tempted to enter the traditional terminal command `which python3` to locate the Python's location. However, this command will reveal only the *pyenv* path modifications inserted in your shell's configuration. In fact you will see something like this: `/Users/MyUserName/.pyenv/shims/python3`
 :::
+
+**2c:** We are now ready to *pyenv* in order to install a new Python version. In case you know the precise Python version you would like to install (for the sake of this example let's say 3.10.5) simply execute the following *pyenv* command:
+
+``` default
+pyenv install 3.10.5
+```
+
+To verify which Python versions are installed and available on your computer just enter the following command we saw before:
+
+``` default
+pyenv versions
+```
+
+This time the output should look like along these lines:
+
+``` default
+* system (set by /Users/ggs/.pyenv/version)
+  3.10.5
+```
+
+The output provides a list of all installed Python versions (remember the star \* symbol marks the Python version set to be global).
+
+::: {.callout-tip collapse="true" icon="false"}
+## Nice to know: Which Python versions are available? 
+
+In case you would like to get a list of all Python versions that are available to be installed via *pyenv* you can use the following command (as a shortcut you can also type: `pyenv install -l)`:
+
+``` default
+pyenv install --list
+```
+
+This command will give you a list of available Python versions (and additionally showing other libraries we can ignore for the moment) such as:
+
+``` default
+Available versions:
+  2.1.3
+  2.2.3
+  2.3.7
+...
+  3.10.5
+  3.10.6
+  3.10.7
+...
+```
+:::
+
+**2d:** In our current example we have seen that there are two versions of Python installed on our computer. Using *pyenv* we can switch between these two Python versions, that is we can select one version and set it the global default: this global Python version will become the one macOS uses when running Python applications. Set a given Python version to global by executing the following command:
+
+``` default
+pyenv global 3.10.5
+```
+
+When running the previously shown command `pyenv versions` again we will see that the Python version marked to be global has changed accordingly (exemplary output):
+
+``` default
+system
+* 3.10.5 (set by /Users/MyUserName/.pyenv/version)
+```
+
+As intended the star \* symbol marking the Python version set as global has changed. In case you have several more Python versions installed you can change to each one of them using the *pyenv* global command shown above.
+
+You can change back to using your system Python version as the global one via the following command:
+
+``` default
+pyenv global system
+```
+
+## 3. Install ***virtualenvwrapper*** using your system Python version (and its associated *pip* version)
+
+**3a:** Before you continue please consider the following important requirement:
+
+::: {.callout-important collapse="true"}
+## Important
+
+Before continuing with installing the *virtualenvwrapper* library make sure that your system Python version is set to global (just run the command `pyenv versions` and verify that the star \* symbol is shown next to the system Python version - as detailed in step 2 above). If that is not the case, you can simply set the system Python version to global by executing this command: `pyenv global system`.
+:::
+
+Being sure that you are using the correct Python version i.e. the system Python version, you can now run the following installation command that will install the *virtualenvwrapper* library on your computer \[[\*](https://virtualenvwrapper.readthedocs.io/en/latest/install.html#basic-installation)\]. Note: The usage of the `sudo` command will require that you enter your admin password before the installation can be executed:
+
+``` default
+sudo pip3 install virtualenvwrapper
+```
