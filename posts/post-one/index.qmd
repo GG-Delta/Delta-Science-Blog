@@ -12,7 +12,7 @@ format:
 
 # Summary
 
-Most people's computers have multiple Python versions installed (macOS come with Python pre-installed, often termed system Python). Keeping these versions (the pre-installed system Python version and other user-installed Python versions) separate and controlling them independently (e.g. installing or updating a given Python package for a specific Python version only) requires an upfront solution.
+Most people's computers have multiple Python versions installed (macOS comes with Python pre-installed, often termed system Python). Keeping these versions (the pre-installed system Python version and other user-installed Python versions) separate and controlling them independently (e.g. installing or updating a given Python package for a specific Python version only) requires an upfront solution.
 
 Working with virtual environments, i.e. having a separate workspace for each individual project, necessitates actively defining the Python version that will be used to create a specific virtual environment. Controlling Python versions is thus linked to the task of managing virtual environments. All packages installed in a specific virtual environment will not conflict with other virtual environments (all packages being contained in that particular workspace).
 
