@@ -1,7 +1,7 @@
 ---
 title: "Save time & nerves: start controlling different Python versions (*pyenv*) and managing virtual environments (*virtualenvwrapper*)"
 author: "GG Supp"
-date: "2022-11-01"
+date: "2022-11-04"
 categories: [python, productivity, setup]
 knitr: true
 image: "image.jpg"
@@ -389,3 +389,5 @@ The following table summarizes some important operations working with virtual en
 | Remove the virtual environment named "myenv_test1"                                            | `rmvirtualenv myenv_test1`                 | Before removing a given virtual environment you first need to deactivate it                      |
 
 : Managing virtual environments (*virtualenvwrapper*)
+
+All these steps together should give you a clean and maintainable setup for all your Python coding work. I hope that my explanations helped you on the way. Happy coding & Cheers!
