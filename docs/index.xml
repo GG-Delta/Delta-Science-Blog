@@ -22,7 +22,7 @@
 
 <section id="summary" class="level1">
 <h1>Summary</h1>
-<p>Most people’s computers have multiple Python versions installed (Macs come with Python pre-installed, often termed system Python). Keeping these versions (the pre-installed system Python version and other user-installed Python versions) separate and controlling them independently (e.g.&nbsp;installing or updating a given Python package for a specific Python version only) requires an upfront solution.</p>
+<p>Most people’s computers have multiple Python versions installed (macOS come with Python pre-installed, often termed system Python). Keeping these versions (the pre-installed system Python version and other user-installed Python versions) separate and controlling them independently (e.g.&nbsp;installing or updating a given Python package for a specific Python version only) requires an upfront solution.</p>
 <p>Working with virtual environments, i.e.&nbsp;having a separate workspace for each individual project, necessitates actively defining the Python version that will be used to create a specific virtual environment. Controlling Python versions is thus linked to the task of managing virtual environments. All packages installed in a specific virtual environment will not conflict with other virtual environments (all packages being contained in that particular workspace).</p>
 <p>Following the steps outlined here below, your computer should be in a state where different Python versions coexist peacefully and where you can safely install, upgrade, or remove libraries without affecting other projects. In fact, a working setup that is simple to maintain.</p>
 </section>
@@ -369,7 +369,7 @@ Important
   <category>setup</category>
   <guid>https://gg-delta.github.io/Delta-Science-Blog/posts/post-one/index.html</guid>
   <pubDate>Fri, 04 Nov 2022 00:00:00 GMT</pubDate>
-  <media:content url="https://gg-delta.github.io/Delta-Science-Blog/posts/post-one/image.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://gg-delta.github.io/Delta-Science-Blog/posts/post-one/pexels-paul-theodor-oja-2393736.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>
