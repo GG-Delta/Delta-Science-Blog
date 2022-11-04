@@ -2,10 +2,9 @@
 title: "Save time & nerves: start controlling different Python versions (*pyenv*) and managing virtual environments (*virtualenvwrapper*)"
 author: "GG Supp"
 date: "2022-11-01"
-categories: [news, code, analysis]
+categories: [python, productivity, setup]
 knitr: true
 image: "image.jpg"
-draft: true
 format:
   html:
     code-copy: hover
@@ -13,7 +12,9 @@ format:
 
 # Summary
 
-Most people's computers have multiple Python versions installed (Macs come with Python pre-installed, often termed system Python). Keeping these versions (the pre-installed system Python version and other user-installed Python versions) separate and controlling them independently (e.g. installing or updating a given Python package for a specific Python version only) requires an upfront solution. Working with virtual environments, i.e. having a separate workspace for each individual project, necessitates actively defining the Python version that will be used to create a specific virtual environment. Controlling Python versions is thus linked to the task of managing virtual environments. All packages installed in a specific virtual environment will not conflict with other virtual environments (all packages being contained in that particular workspace).
+Most people's computers have multiple Python versions installed (Macs come with Python pre-installed, often termed system Python). Keeping these versions (the pre-installed system Python version and other user-installed Python versions) separate and controlling them independently (e.g. installing or updating a given Python package for a specific Python version only) requires an upfront solution.
+
+Working with virtual environments, i.e. having a separate workspace for each individual project, necessitates actively defining the Python version that will be used to create a specific virtual environment. Controlling Python versions is thus linked to the task of managing virtual environments. All packages installed in a specific virtual environment will not conflict with other virtual environments (all packages being contained in that particular workspace).
 
 Following the steps outlined here below, your computer should be in a state where different Python versions coexist peacefully and where you can safely install, upgrade, or remove libraries without affecting other projects. In fact, a working setup that is simple to maintain.
 
@@ -125,7 +126,7 @@ brew update
 brew install pyenv
 ```
 
-**2b:** Now you need to configure your terminal (or shell) in a way so that the *pyenv* commands will be loaded. You do this by editing the configuration file of your terminal represented by `.zshrc`, `.bashrc` or other file types (sometimes subsumed under the term "shell's rc file", the affix means \"run commands\"). Given that macOS default is based on the `zsh` Unix shell - also known as Z shell - we will focus to edit only this configuration file (for other options please see this manual: \[[\*](https://github.com/pyenv/pyenv#set-up-your-shell-environment-for-pyenv)\]). The configuration file for `zsh` is called `.zshrc` and is located in your home folder (`~/.zshrc`).
+**2b:** Now you need to configure your terminal (or shell) in a way so that the *pyenv* commands will be loaded. You do this by editing the configuration file of your terminal represented by `.zshrc`, `.bashrc` or other file types (sometimes subsumed under the term "shell's rc file", the affix means "run commands"). Given that macOS default is based on the `zsh` Unix shell - also known as Z shell - we will focus to edit only this configuration file (for other options please see this manual: \[[\*](https://github.com/pyenv/pyenv#set-up-your-shell-environment-for-pyenv)\]). The configuration file for `zsh` is called `.zshrc` and is located in your home folder (`~/.zshrc`).
 
 Before trying to edit a file we should make sure that the hidden `.zshrc` file is actually there:
 
@@ -237,7 +238,7 @@ This time the output should look like along these lines:
 The output provides a list of all installed Python versions, while the star \* symbol marks the Python version set to be global (default).
 
 ::: {.callout-tip collapse="true" icon="false"}
-## Nice to know: Which Python versions are available to install? 
+## Nice to know: Which Python versions are available to install?
 
 In case you would like to get a list of all Python versions that are available to be installed via *pyenv* you can use the following command (as a shortcut you can also type: `pyenv install -l)`:
 
@@ -291,14 +292,14 @@ pyenv global system
 Before continuing with installing the *virtualenvwrapper* library make sure that your system Python version is set to global (just run the command `pyenv versions` and verify that the star \* symbol is shown next to the system Python version - as detailed in step 2 above). If that is not the case, you can simply set the system Python version to global by executing this command: `pyenv global system`.
 :::
 
-Being sure that you are using the correct Python version i.e. the system Python version, you can now run the following installation command. It will install the *virtualenvwrapper* library on your computer \[[\*](https://virtualenvwrapper.readthedocs.io/en/latest/install.html#basic-installation)\] \
+Being sure that you are using the correct Python version i.e. the system Python version, you can now run the following installation command. It will install the *virtualenvwrapper* library on your computer \[[\*](https://virtualenvwrapper.readthedocs.io/en/latest/install.html#basic-installation)\]\
 (Note: The usage of the `sudo` command will require that you enter your admin password before the installation can be executed):
 
 ``` default
 sudo pip3 install virtualenvwrapper
 ```
 
-**3b:** Next, we need to configure your terminal to load the *virtualenvwrapper* commands, i.e. we will modify the existing `.zsrh` file of your terminal in a way that the *virtualenvwrapper* commands can be used (we saw already a similar procedure for *pyenv*  - see the details of step 2b). To add three modifications to your `~.zshrc` file please execute the following three commands within your terminal window \[[\*](https://virtualenvwrapper.readthedocs.io/en/latest/install.html#shell-startup-file)\]:
+**3b:** Next, we need to configure your terminal to load the *virtualenvwrapper* commands, i.e. we will modify the existing `.zsrh` file of your terminal in a way that the *virtualenvwrapper* commands can be used (we saw already a similar procedure for *pyenv* - see the details of step 2b). To add three modifications to your `~.zshrc` file please execute the following three commands within your terminal window \[[\*](https://virtualenvwrapper.readthedocs.io/en/latest/install.html#shell-startup-file)\]:
 
 ``` default
 echo 'export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3' >> ~/.zshrc
@@ -379,7 +380,7 @@ To work smoothly with virtual environment please see the most important commands
 The following table summarizes some important operations working with virtual environments provided by virtualenvwrapper (for a complete list please see the manual \[[\*](https://virtualenvwrapper.readthedocs.io/en/latest/command_ref.html#)\]).
 
 | **Desired Outcome**                                                                           | **Command**                                | **Comment**                                                                                      |
-|----------------------|-----------------------------|----------------------|
+|----------------------|----------------------------|----------------------|
 | Create a virtual environment named "myenv_test1"                                              | `mkvirtualenv myenv_test1`                 | The creation of the virtual environment is based upon the Python system version                  |
 | Create a virtual environment named "myenv_test2" which is based on a specified Python version | `mkvirtualenv -p python3.10.5 myenv_test2` | Before specifying a user-installed Python version that version need to be set to global (see 2d) |
 | Deactivate the currently running virtual environment                                          | `deactivate`                               | After executing this command the prompt line of your window will have changed (see 3c)           |

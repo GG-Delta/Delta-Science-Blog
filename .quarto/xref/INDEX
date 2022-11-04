@@ -16,5 +16,8 @@
   },
   "drafts/draft_01.md": {
     "draft_01.html": "b3139a30"
+  },
+  "posts/post-one/index.qmd": {
+    "index.html": "39b5220a"
   }
 }
