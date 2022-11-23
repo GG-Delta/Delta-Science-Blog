@@ -1,7 +1,7 @@
 ---
 title: "Using *Jupyter Notebook* in virtual environments in a free source-code editor (*VSCodium/VS Code*) "
 author: "GG Supp"
-date: "2022-11-18"
+date: "2022-11-23"
 categories: [python, productivity, setup]
 image: "pexels-tuur-tisseghem-159333.jpg"
 draft: false

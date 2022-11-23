@@ -10,7 +10,7 @@
 <atom:link href="https://gg-delta.github.io/Delta-Science-Blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>Time saving solutions in data science, programming and reproducable research</description>
 <generator>quarto-1.1.189</generator>
-<lastBuildDate>Fri, 18 Nov 2022 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 23 Nov 2022 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Using Jupyter Notebook in virtual environments in a free source-code editor (VSCodium/VS Code)</title>
   <dc:creator>GG Supp</dc:creator>
@@ -194,7 +194,7 @@ Some nice shortcuts
   <category>productivity</category>
   <category>setup</category>
   <guid>https://gg-delta.github.io/Delta-Science-Blog/posts/post-two/index.html</guid>
-  <pubDate>Fri, 18 Nov 2022 00:00:00 GMT</pubDate>
+  <pubDate>Wed, 23 Nov 2022 00:00:00 GMT</pubDate>
   <media:content url="https://gg-delta.github.io/Delta-Science-Blog/posts/post-two/pexels-tuur-tisseghem-159333.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
