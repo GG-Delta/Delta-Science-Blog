@@ -22,7 +22,7 @@
 
 <section id="summary" class="level1">
 <h1>Summary</h1>
-<p>Working on data-science projects often requires to present, showcase and explain interactive source-code and data visualization within a single document. <em>Jupyter Notebook</em> is a tool providing exactly that. In the following lines I will briefly lead you through an exemplary setup that combines <em>Jupyter Notebook</em> running in a specified virtual environment with the fully open-source editor <em>VSCodium</em> (free alternative to <em>VS Code</em>). Following these lines should lead you to a productive setup where you can document your data science projects in the form of a <em>Jupyter Notebook</em>, while editing its content via the extremely capable <em>VSCodium</em> editor.</p>
+<p>Working on data-science projects often requires to present, showcase and explain interactive source-code and data visualization within a single document. <em>Jupyter Notebook</em> is a tool providing exactly that. In the following lines I will briefly lead you through an exemplary setup that combines <em>Jupyter Notebook</em> running in a specified virtual environment with the fully open-source editor <em>VSCodium</em> (free alternative to <em>VS Code</em>). Following these lines should lead you to a productive setup where you can document your data-science projects in the form of a <em>Jupyter Notebook</em>, while editing its content via the extremely capable <em>VSCodium</em> editor.</p>
 <p>Before you proceed, please ensure that both of the following conditions are met:</p>
 <ol type="1">
 <li>Your computer has a version of Python 3 installed, and</li>
@@ -34,7 +34,7 @@
 </section>
 <section id="overview" class="level1">
 <h1>Overview</h1>
-<p>We’ll go through five main steps. The list below provides a high-level overview. Each of the five main steps will be explained in detail in the next sections (see Details):</p>
+<p>We’ll go through five main steps. The list below provides a high-level overview. Each of the five main steps will be explained in detail in the next section (see Details):</p>
 <ol type="1">
 <li>Install and setup <em>VSCodium</em> (i.e.&nbsp;get and enable some extensions)</li>
 <li>Activate an existing virtual environment (with its underlying Python/pip version) which you want to use for running your <em>Jupyter Notebook</em> document. Then, within this activated virtual environment install two required packages:
@@ -42,7 +42,7 @@
 <li><em>ipykernel</em></li>
 <li><em>jupyter</em></li>
 </ul></li>
-<li>Install any additional Python packages (within the same activated virtual environment) that you intend to use for your data science project and that must be available for your new <em>Jupyter Notebook</em> document (to be created at a later step).</li>
+<li>Install any additional Python packages (within the same activated virtual environment) that you intend to use for your data science project and that must be available for your new <em>Jupyter Notebook</em> document (to be created at a later step)</li>
 <li>Create a new ipykernel that will serve as the basis for the upcoming <em>Jupyter Notebook</em> document</li>
 <li>Finally, just initialize a brand-new Jupyter Notebook document and open it with your <em>VSCodium</em> editor (after selecting the right kernel within the editor, you are ready to start using the document).</li>
 </ol>
@@ -52,7 +52,7 @@
 <h1>Details</h1>
 <section id="install-and-setup-vscodium" class="level2">
 <h2 class="anchored" data-anchor-id="install-and-setup-vscodium">1. Install and setup <em>VSCodium</em></h2>
-<p>As a first step you should download and install the fully open-source editor <a href="https://vscodium.com"><em>VSCodium</em></a> which is known as the free alternative to the popular <em>VS Code</em> editorof Microsoft (in case you do have it installed already). Please follow one of the following options:</p>
+<p>As a first step you should download and install (in case you don’t have it) the fully open-source editor <a href="https://vscodium.com"><em>VSCodium</em></a> which is known as the free alternative for the popular <em>VS Code</em> editor of Microsoft. Please follow one of the following options:</p>
 <div class="panel-tabset">
 <ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true">Install via brew</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false">Install via .dmg</a></li></ul>
 <div class="tab-content">
@@ -68,18 +68,18 @@
 </div>
 </div>
 </div>
-<p>To prepare the editor for <em>Jupyter Notebook</em> we just need to install and enable the following extension: just navigate to the left vertical menu column of <em>VSCodium</em> and open the section called “Extensions” (keyboard shortcut: <em><code>shift</code></em> + <em><code>command</code></em> + <em><code>X</code></em>). You can see the color highlighted screenshot below.</p>
+<p>To prepare the editor for <em>Jupyter Notebook</em> we just need to install and enable the following extension: just navigate to the left vertical menu column of <em>VSCodium</em> and open the section called “Extensions” (keyboard shortcut: <em><code>shift</code></em> + <em><code>command</code></em> + <em><code>X</code></em>). You can see the arrow in the color highlighted screenshot below.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://gg-delta.github.io/Delta-Science-Blog/posts/post-two/screenshot_editor_extensions.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">VSCodium: Select and open the extension section</figcaption><p></p>
 </figure>
 </div>
-<p>In the extensions section of VSCodium you will see a search mask: enter there the word “Jupyter” and search in the the resulting list for the extension option called “Jupyter Extension for Visual Studio Code” that is published by <em>ms-toolsai</em>. Click on the installation button displayed next to it. After the installation you should see the updated status of this extension reflected by both buttons “disable” and “uninstall” - see the screenshot below:</p>
+<p>Within the extensions window of VSCodium you will see a search mask (top left corner): enter there the word “Jupyter” and search in the resulting list for the extension option called “Jupyter Extension for Visual Studio Code” that is published by <em>ms-toolsai</em>. Click on the installation button displayed next to it. After the installation you should see the updated status of this extension reflected by both buttons “disable” and “uninstall” - see the screenshot below:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://gg-delta.github.io/Delta-Science-Blog/posts/post-two/screenshot_editor_installed.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">VSCodium: Extension section</figcaption><p></p>
+<p></p><figcaption class="figure-caption">VSCodium: Extensions window</figcaption><p></p>
 </figure>
 </div>
 <div class="callout-tip callout callout-style-default no-icon callout-captioned">
@@ -88,7 +88,7 @@
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
-Smart move: Iwclude Python extension
+Smart move: Include Python extension
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -104,7 +104,7 @@ Smart move: Iwclude Python extension
 <section id="activate-an-existing-virtual-environment-and-install-two-fundamental-python-packages" class="level2">
 <h2 class="anchored" data-anchor-id="activate-an-existing-virtual-environment-and-install-two-fundamental-python-packages">2. Activate an existing virtual environment and install two fundamental Python packages</h2>
 <p>To manage virtual environments I am using the extremely useful tool <em>virtualenvwrapper</em>. In an earlier post I explained the use of virtual environments together with a detailed instruction of their setup and management (please see <a href="https://gg-delta.github.io/Delta-Science-Blog/posts/post-one/">here</a>).</p>
-<p>Using the <code>workon</code> command from <em>virtualenvwrapper</em> without any additional expressions enlists all virtual environments that are currently available on your computer. The terminal window in our exemplary case provides the following output (listing three already created virtual environments):</p>
+<p>Using the <code>workon</code> command from <em>virtualenvwrapper</em> without any additional expressions enlists all virtual environments that are currently available on your computer. In our exemplary case provides the terminal window provides the following output (listing three already created virtual environments):</p>
 <div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1">myusername@mbp ~ % workon</span>
 <span id="cb2-2">myenv_dwork01</span>
 <span id="cb2-3">myenv_dwork02</span>
@@ -121,17 +121,17 @@ Smart move: Iwclude Python extension
 <p>Keeping the same virtual environment activated (in our example case: <em>myenv_dwork02</em>) we can proceed with installing those packages that we intend to use later for our data project (within the <em>Jupyter Notebook</em> document).</p>
 <p>Let’s assume we know to use two very popular Python packages for data analysis (<em>pandas</em>) and data visualization (<em>seaborn</em>). We can install both packages by calling the following command (please add/modify the package names according to your needs) in your terminal window:</p>
 <div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb6-1">pip install -U pandas seaborn</span></code></pre></div>
-<p>One additional detail: The flag <code>-U</code>/<code>--upgrade</code> with the <code>pip install</code> command used above means to upgrade packages to their latest version.</p>
+<p>One additional detail: The flag <code>-U</code>/<code>--upgrade</code> with the <code>pip install</code> command used above means to upgrade the specified packages to their latest version.</p>
 </section>
 <section id="create-a-new-ipykernel-and-give-it-a-name" class="level2">
 <h2 class="anchored" data-anchor-id="create-a-new-ipykernel-and-give-it-a-name">4. Create a new ipykernel and give it a name</h2>
-<p>To create and name the new ipykernel run the Python command shown below in your terminal window. You should give the new ipykernel a name: in our example I will call it <em>myenv_dwork02_kernel</em> (to underline the connection of the kernel with the virtual environment). Feel free to choose a name that suits your preferences.</p>
+<p>To create and name the new ipykernel run the Python command shown below in your terminal window. You should give the new ipykernel a name: in our example I will call it <em>myenv_dwork02_kernel</em> (to underline the connection of the kernel with the virtual environment). Feel free to choose a name that suits your preferences:</p>
 <div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb7-1">python -m ipykernel install --name=myenv_dwork02_kernel</span></code></pre></div>
 </section>
 <section id="create-a-new-jupyter-notebook-document-and-open-it-with-your-vscodium-editor" class="level2">
 <h2 class="anchored" data-anchor-id="create-a-new-jupyter-notebook-document-and-open-it-with-your-vscodium-editor">5. Create a new <em>Jupyter Notebook</em> document and open it with your <em>VSCodium</em> editor</h2>
 <p>We managed to reach the very last step of our setup. To that end we just need to create a fresh (empty) <em>Jupyter Notebook</em> document (having the file extension <code>.ipynb</code>) and open this file in our VSCodium editor.</p>
-<p>Before creating the new .ipynb file we should define where we want to create this file: it seems to be conveniant practice to establish a dedicated folder for a given data project. Therefore, I will create such a folder (to be named <em>dwork02</em>) within my home directory by executing the following lines in the terminal window:</p>
+<p>Before creating the new <code>.ipynb</code> file we should decide where we want to create this file: it seems to be conveniant practice to establish a dedicated folder for a given data project. Therefore, I will create such a folder (to be named <em>dwork02</em>) within my home directory by executing the following lines in the terminal window:</p>
 <div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb8-1">mkdir  ~/dwork02 </span></code></pre></div>
 <p>By calling the <code>touch</code> command we will now create the <code>.ipynb</code> file (to be named <em>new_noteb</em>) in the project folder we have just created:</p>
 <div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb9-1">touch ~/dwork02/new_noteb.ipynb</span></code></pre></div>
@@ -154,14 +154,14 @@ Some nice shortcuts
 </div>
 </div>
 </div>
-<p>After having created the fresh <em>Jupyter Notebook</em> document we should open it now from within the <em>VSCodium</em> editor: start the VSCodium application, select from the main top-bar menu the section <em>File</em> and choose <em>Open</em> (see the screenshot below).</p>
+<p>After having created the fresh <em>Jupyter Notebook</em> file we should open it now from within the <em>VSCodium</em> editor. To do so, start the VSCodium application, select from the main top-bar menu the section <em>File</em> and choose <em>Open</em> (see the screenshot below).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://gg-delta.github.io/Delta-Science-Blog/posts/post-two/screenshot_open_file.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">VSCodium: Open the created .ipynb file</figcaption><p></p>
 </figure>
 </div>
-<p>Browse to the location, where you just have created the new .ipynb file (in our example case this file is located in the <em>dwork_02</em> directory) and select to open it. Now, when the notebook opens up in your editor, click on the kernel picker located in the top right corner (see the arrow and marked highlight below):</p>
+<p>Browse to the location, where you just have created the new <code>.ipynb</code> file (in our example this is the <em>dwork_02</em> directory) and open this file. Now, when the notebook opens up in your editor, click on the kernel picker located in the top right corner (see the arrow and marked highlight below):</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://gg-delta.github.io/Delta-Science-Blog/posts/post-two/screenshot_kernel_button.png" class="img-fluid figure-img"></p>
@@ -182,6 +182,25 @@ Some nice shortcuts
 <p><img src="https://gg-delta.github.io/Delta-Science-Blog/posts/post-two/screenshot_kernel_final.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption">VSCodium: Selected kernel running in new Jupyter notebook file</figcaption><p></p>
 </figure>
+</div>
+<div class="callout-tip callout callout-style-default no-icon callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+How to add a new Python package to the current Jupyter kernel?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Imagine that you have not included all python packages that you need to use in your Jupyter notebook at the time when you initialized its setup (see step 3). Don’t worry! You can still do it within your running Jupyter notebook.</p>
+<p>For a concrete example let’s say we want to include the great machine learning package <em>yellowbrick</em> to our current kernel: just add a new code cell in your Jupyter notebook, then paste and run the following code in this cell of the notebook:</p>
+<div class="sourceCode" id="cb12" style="background: #f1f3f5;"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb12-1">import sys</span>
+<span id="cb12-2">!{sys.executable} -m pip install yellowbrick</span></code></pre></div>
+</div>
+</div>
 </div>
 <p>Happy coding &amp; Cheers! 😃</p>
 
