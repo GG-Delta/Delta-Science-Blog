@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://gg-delta.github.io/Delta-Science-Blog/index.html</loc>
-    <lastmod>2022-11-04T15:51:42.743Z</lastmod>
+    <lastmod>2022-11-23T16:22:49.869Z</lastmod>
   </url>
   <url>
     <loc>https://gg-delta.github.io/Delta-Science-Blog/drafts/draft_01.html</loc>
@@ -18,6 +18,10 @@
   </url>
   <url>
     <loc>https://gg-delta.github.io/Delta-Science-Blog/posts/post-one/index.html</loc>
-    <lastmod>2022-11-04T15:51:42.331Z</lastmod>
+    <lastmod>2022-11-18T09:33:48.350Z</lastmod>
+  </url>
+  <url>
+    <loc>https://gg-delta.github.io/Delta-Science-Blog/posts/post-two/index.html</loc>
+    <lastmod>2022-11-23T16:22:49.444Z</lastmod>
   </url>
 </urlset>

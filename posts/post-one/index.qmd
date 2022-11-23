@@ -380,7 +380,7 @@ To work smoothly with virtual environment please see the most important commands
 The following table summarizes some important operations working with virtual environments provided by virtualenvwrapper (for a complete list please see the manual \[[\*](https://virtualenvwrapper.readthedocs.io/en/latest/command_ref.html#)\]).
 
 | **Desired Outcome**                                                                           | **Command**                                | **Comment**                                                                                      |
-|----------------------|----------------------------|----------------------|
+|-----------------------------------------------------------------------------------------------|--------------------------------------------|--------------------------------------------------------------------------------------------------|
 | Create a virtual environment named "myenv_test1"                                              | `mkvirtualenv myenv_test1`                 | The creation of the virtual environment is based upon the Python system version                  |
 | Create a virtual environment named "myenv_test2" which is based on a specified Python version | `mkvirtualenv -p python3.10.5 myenv_test2` | Before specifying a user-installed Python version that version need to be set to global (see 2d) |
 | Deactivate the currently running virtual environment                                          | `deactivate`                               | After executing this command the prompt line of your window will have changed (see 3c)           |

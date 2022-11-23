@@ -19,5 +19,8 @@
   },
   "posts/post-one/index.qmd": {
     "index.html": "39b5220a"
+  },
+  "posts/post-two/index.qmd": {
+    "index.html": "a21a27aa"
   }
 }

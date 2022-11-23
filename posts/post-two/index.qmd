@@ -1,0 +1,182 @@
+---
+title: "Using *Jupyter Notebook* in virtual environments in a free source-code editor (*VSCodium/VS Code*) "
+author: "GG Supp"
+date: "2022-11-18"
+categories: [python, productivity, setup]
+image: "pexels-tuur-tisseghem-159333.jpg"
+draft: false
+---
+
+# Summary
+
+Working on data-science projects often requires to present, showcase and explain interactive source-code and data visualization within a single document. *Jupyter Notebook* is a tool providing exactly that. In the following lines I will briefly lead you through an exemplary setup that combines *Jupyter Notebook* running in a specified virtual environment with the fully open-source editor *VSCodium* (free alternative to *VS Code*). Following these lines should lead you to a productive setup where you can document your data science projects in the form of a *Jupyter Notebook*, while editing its content via the extremely capable *VSCodium* editor.
+
+Before you proceed, please ensure that both of the following conditions are met:
+
+1.  Your computer has a version of Python 3 installed, and
+2.  Your computer is prepared to initialize and run a virtual environment
+
+If you need assistance or a refresher on these topics you can take a look here: [Blog-Post-01](https://gg-delta.github.io/Delta-Science-Blog/posts/post-one/).
+
+I wrote this summary using macOS (version: 12.6), but you should be able to follow equivalent steps on Linux or Windows (you might need to make some modifications).
+
+------------------------------------------------------------------------
+
+# Overview
+
+We'll go through five main steps. The list below provides a high-level overview. Each of the five main steps will be explained in detail in the next sections (see Details):
+
+1.  Install and setup *VSCodium* (i.e. get and enable some extensions)
+2.  Activate an existing virtual environment (with its underlying Python/pip version) which you want to use for running your *Jupyter Notebook* document. Then, within this activated virtual environment install two required packages:
+    -   *ipykernel*
+    -   *jupyter*
+3.  Install any additional Python packages (within the same activated virtual environment) that you intend to use for your data science project and that must be available for your new *Jupyter Notebook* document (to be created at a later step).
+4.  Create a new ipykernel that will serve as the basis for the upcoming *Jupyter Notebook* document
+5.  Finally, just initialize a brand-new Jupyter Notebook document and open it with your *VSCodium* editor (after selecting the right kernel within the editor, you are ready to start using the document).
+
+------------------------------------------------------------------------
+
+# Details
+
+## 1. Install and setup *VSCodium*
+
+As a first step you should download and install the fully open-source editor [*VSCodium*](https://vscodium.com) which is known as the free alternative to the popular *VS Code* editorof Microsoft (in case you do have it installed already). Please follow one of the following options:
+
+::: panel-tabset
+## Install via brew
+
+In case you have followed the steps in my earlier post ([Blog-Post-01](https://gg-delta.github.io/Delta-Science-Blog/posts/post-one/)), you will have [homebrew](https://brew.sh/) already installed on your computer. If not, please consider to get homebrew: it is a very useful and straightforward package manager (for macOS/Linux).
+
+Now, assuming your computer has homebrew installed, please open a terminal window (you can do this by opening macOS spotlight - or via your keyboard: just hit both keys *`command`* + *`space`* at once - then type "terminal" and open this application).
+
+In your open terminal window enter and execute the following command to install the *VSCodium* editor:
+
+``` default
+brew install --cask vscodium
+```
+
+## Install via .dmg
+
+A list of the most recent VSCodium releases in various formats can be found [here](https://github.com/VSCodium/vscodium/releases). Open this link and scroll down to the .dmg file section and download the appropriate file matching your computer's architecture (note the respective suffix of the listed file names: .*arm64.* should used for newer Macs built on Apple Silicon, while .x64. for all Intel Macs).
+
+After downloading the .dmg file, double-click the file to open it, and you\'ll see a Finder window. Simply drag the *VSCodium* icon into the Applications folder and you are done with the installation.
+:::
+
+To prepare the editor for *Jupyter Notebook* we just need to install and enable the following extension: just navigate to the left vertical menu column of *VSCodium* and open the section called "Extensions" (keyboard shortcut: *`shift`* + *`command`* + *`X`*). You can see the color highlighted screenshot below.
+
+![VSCodium: Select and open the extension section](screenshot_editor_extensions.png)
+
+In the extensions section of VSCodium you will see a search mask: enter there the word "Jupyter" and search in the the resulting list for the extension option called "Jupyter Extension for Visual Studio Code" that is published by *ms-toolsai*. Click on the installation button displayed next to it. After the installation you should see the updated status of this extension reflected by both buttons "disable" and "uninstall" - see the screenshot below:
+
+![VSCodium: Extension section](screenshot_editor_installed.png)
+
+::: {.callout-tip collapse="true" icon="false"}
+## Smart move: Iwclude Python extension
+
+Since you are already in the right place it will not hurt (quite the contrary) to include another extension, namely "Python" published by *ms-python*. This extension (its complete title is "Python extension for Visual Studio Code") provides extensive language support for Python with code editing features such as code completion, parameter info, quick info etc.
+
+![VSChronium: Python Extension](screenshot_additional_extension.png)\
+:::
+
+## 2. Activate an existing virtual environment and install two fundamental Python packages
+
+To manage virtual environments I am using the extremely useful tool *virtualenvwrapper*. In an earlier post I explained the use of virtual environments together with a detailed instruction of their setup and management (please see [here](https://gg-delta.github.io/Delta-Science-Blog/posts/post-one/)).
+
+Using the `workon` command from *virtualenvwrapper* without any additional expressions enlists all virtual environments that are currently available on your computer. The terminal window in our exemplary case provides the following output (listing three already created virtual environments):
+
+``` default
+myusername@mbp ~ % workon
+myenv_dwork01
+myenv_dwork02
+myenv_test1
+```
+
+To activate one specific virtual environment we just need to use the `workon` command from *virtualenvwrapper* together with the name of the virtual environment (for our example let's choose *myenv_dwork2*):
+
+``` default
+myusername@mbp ~ % workon myenv_dwork02
+```
+
+After having activated the selected virtual environment successfully you will note that the prompt of your terminal window has changed to this format: The activated virtual environment is explicitly stated within the round brackets:
+
+``` default
+(myenv_dwork02) myusername@mbp ~ %
+```
+
+Now we can proceed with installing the two required packages in this virtual environment using the pip command. Please execute the following command in your terminal window (the feedback from the terminal will tell you when the installation was concluded):
+
+``` default
+pip install ipykernel jupyter
+```
+
+## 3. Install any additional Python packages (within the same activated virtual environment)
+
+Keeping the same virtual environment activated (in our example case: *myenv_dwork02*) we can proceed with installing those packages that we intend to use later for our data project (within the *Jupyter Notebook* document).
+
+Let's assume we know to use two very popular Python packages for data analysis (*pandas*) and data visualization (*seaborn*). We can install both packages by calling the following command (please add/modify the package names according to your needs) in your terminal window:
+
+``` default
+pip install -U pandas seaborn
+```
+
+One additional detail: The flag `-U`/`--upgrade` with the `pip install` command used above means to upgrade packages to their latest version.
+
+## 4. Create a new ipykernel and give it a name
+
+To create and name the new ipykernel run the Python command shown below in your terminal window. You should give the new ipykernel a name: in our example I will call it *myenv_dwork02_kernel* (to underline the connection of the kernel with the virtual environment). Feel free to choose a name that suits your preferences.
+
+``` default
+python -m ipykernel install --name=myenv_dwork02_kernel
+```
+
+## 5. Create a new *Jupyter Notebook* document and open it with your *VSCodium* editor
+
+We managed to reach the very last step of our setup. To that end we just need to create a fresh (empty) *Jupyter Notebook* document (having the file extension `.ipynb`) and open this file in our VSCodium editor.
+
+Before creating the new .ipynb file we should define where we want to create this file: it seems to be conveniant practice to establish a dedicated folder for a given data project. Therefore, I will create such a folder (to be named *dwork02*) within my home directory by executing the following lines in the terminal window:
+
+``` default
+mkdir  ~/dwork02 
+```
+
+By calling the `touch` command we will now create the `.ipynb` file (to be named *new_noteb*) in the project folder we have just created:
+
+``` default
+touch ~/dwork02/new_noteb.ipynb
+```
+
+::: {.callout-tip collapse="true" icon="false"}
+## Some nice shortcuts
+
+You can create the folder and the .`ipynb` file also in just one single line as follows:
+
+``` default
+mkdir  ~/dwork02 && touch ~/dwork02/new_noteb.ipynb
+```
+
+In case you want to establish a new directory together with its full directory structure, you can call `mkdir` together with the flag `-p`/`--parents` (this option will make sure that directories are created where needed - in case a given directory already exists no error will be triggered):
+
+``` default
+mkdir -p  ~/Coding/dwork02 && touch ~/Coding/dwork02/new_noteb.ipynb
+```
+:::
+
+After having created the fresh *Jupyter Notebook* document we should open it now from within the *VSCodium* editor: start the VSCodium application, select from the main top-bar menu the section *File* and choose *Open* (see the screenshot below).
+
+![VSCodium: Open the created .ipynb file](screenshot_open_file.png)
+
+Browse to the location, where you just have created the new .ipynb file (in our example case this file is located in the *dwork_02* directory) and select to open it. Now, when the notebook opens up in your editor, click on the kernel picker located in the top right corner (see the arrow and marked highlight below):
+
+![VSCodium: Location of the kernel picker (button)](screenshot_kernel_button.png)
+
+After clicking the kernel picker you will see a list of possible kernels to choose from (see the screenshot with the marked highlights below). Following our example case we will select the kernel named `myenv_dwork02_kernel` (or whatever you have named your kernel before).
+
+![VSCodium: List of available kernels](screenshot_kernel_list.png)
+
+If you don't see your previously created kernel in the kernel list, close *VSCodium* completely and re-open it. It should now appear in the refreshed list as shown above.
+
+When you have your brand-new Jupyter Notebook document open in *VSCodium* and your selected kernel is running (as indicated by the kernel picker in the top right corner: please see the highlighted screenshot below) you have made it! Congratulations!
+
+![VSCodium: Selected kernel running in new Jupyter notebook file](screenshot_kernel_final.png)
+
+Happy coding & Cheers! 😃
