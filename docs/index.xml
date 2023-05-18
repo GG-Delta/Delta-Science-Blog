@@ -9,7 +9,7 @@
 <link>https://gg-delta.github.io/Delta-Science-Blog/index.html</link>
 <atom:link href="https://gg-delta.github.io/Delta-Science-Blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>Time saving solutions in data science, programming and reproducable research</description>
-<generator>quarto-1.1.189</generator>
+<generator>quarto-1.2.475</generator>
 <lastBuildDate>Wed, 23 Nov 2022 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Using Jupyter Notebook in virtual environments in a free source-code editor (VSCodium/VS Code)</title>
@@ -64,7 +64,7 @@
 </div>
 <div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
 <p>A list of the most recent VSCodium releases in various formats can be found <a href="https://github.com/VSCodium/vscodium/releases">here</a>. Open this link and scroll down to the .dmg file section and download the appropriate file matching your computer’s architecture (note the respective suffix of the listed file names: .<em>arm64.</em> should used for newer Macs built on Apple Silicon, while .x64. for all Intel Macs).</p>
-<p>After downloading the .dmg file, double-click the file to open it, and you'll see a Finder window. Simply drag the <em>VSCodium</em> icon into the Applications folder and you are done with the installation.</p>
+<p>After downloading the .dmg file, double-click the file to open it, and you’ll see a Finder window. Simply drag the <em>VSCodium</em> icon into the Applications folder and you are done with the installation.</p>
 </div>
 </div>
 </div>
@@ -217,7 +217,7 @@ How to add a new Python package to the current Jupyter kernel?
   <media:content url="https://gg-delta.github.io/Delta-Science-Blog/posts/post-two/pexels-tuur-tisseghem-159333.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
-  <title>Save time & nerves: start controlling different Python versions (pyenv) and managing virtual environments (virtualenvwrapper)</title>
+  <title>Save time &amp; nerves: start controlling different Python versions (pyenv) and managing virtual environments (virtualenvwrapper)</title>
   <dc:creator>GG Supp</dc:creator>
   <link>https://gg-delta.github.io/Delta-Science-Blog/posts/post-one/index.html</link>
   <description><![CDATA[ 

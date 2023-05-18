@@ -59,7 +59,7 @@ brew install --cask vscodium
 
 A list of the most recent VSCodium releases in various formats can be found [here](https://github.com/VSCodium/vscodium/releases). Open this link and scroll down to the .dmg file section and download the appropriate file matching your computer's architecture (note the respective suffix of the listed file names: .*arm64.* should used for newer Macs built on Apple Silicon, while .x64. for all Intel Macs).
 
-After downloading the .dmg file, double-click the file to open it, and you\'ll see a Finder window. Simply drag the *VSCodium* icon into the Applications folder and you are done with the installation.
+After downloading the .dmg file, double-click the file to open it, and you'll see a Finder window. Simply drag the *VSCodium* icon into the Applications folder and you are done with the installation.
 :::
 
 To prepare the editor for *Jupyter Notebook* we just need to install and enable the following extension: just navigate to the left vertical menu column of *VSCodium* and open the section called "Extensions" (keyboard shortcut: *`shift`* + *`command`* + *`X`*). You can see the arrow in the color highlighted screenshot below.
