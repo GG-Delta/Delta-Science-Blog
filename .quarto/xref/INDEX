@@ -22,5 +22,8 @@
   },
   "posts/post-two/index.qmd": {
     "index.html": "a21a27aa"
+  },
+  "posts/post-three/index.qmd": {
+    "index.html": "37a9afe6"
   }
 }
