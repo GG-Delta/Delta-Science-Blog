@@ -21,9 +21,11 @@ SQL coding is essential for many data engineering applications or services, espe
 
 Clearly not everybody can be considered "native" in SQL and mastering it from scratch can be a daunting and time-consuming. Yet what if our existing knowledge could actually help us learn a new language?
 
-Since many data professionals have already cultivated programming skills in languages like Python, R, Octave, Julia, etc. I was always wandering how the knowledge of one coding language might support the acquisition of another one. We might be tempted to think that the knowledge of one language increases the confusion in learning another one.
+Since many data professionals have already cultivated programming skills in languages like Python, R, Octave, Julia, etc. I was always wandering how the knowledge of one coding language might support the acquisition of another one.
 
-From anecdotal experience it seems that knowledge of multiple languages can provide confusion (variations in syntax, function names, data types, etc.) complicating the learning process even further. However, what if we can use translations tools in order to make the switch to SQL easier and progressive? Using translation tools, we can start to learn in a step-by-step approach, making it easier not only to get started but also to go deeper into SQL.
+One might be tempted to think that the knowledge of one programming language might make it harder to learn a different one. The variations in syntax, function names, data types, and so on can quickly lead to confusion and make the learning process more challenging.
+
+However, what if we can use translations tools in order to make the switch to SQL easier and progressive? Using translation tools, we can start to learn in a step-by-step approach, making it easier not only to get started but also to go deeper into SQL.
 
 In the current post I will showcase a powerful translation tool that generates SQL code based on R commands by using the R packages [*dplyr*](https://dplyr.tidyverse.org/ "This R package provides a consistent grammar of data manipulation") *and* [*dbplyr*](https://github.com/tidyverse/dbplyr "This R package provides the operations of dplyr for databases") both from the popular *tidyverse* collection. The examples provided here below assume some background in R and data manipulation using dplyr (if you would like to get a head start, you could check out this helpful [tutorial for dplyr](https://dplyr.tidyverse.org/articles/dplyr.html) which includes many illustrative code snippets).
 
@@ -35,7 +37,7 @@ The setup we need is nothing more than having a current R version and an IDE ins
 
 As our toy data we will use a subset of weather API requests that were collected in the course of a data engineering project. The data contain atmospheric pressure and temperature records for three seperate locations, each about 25 km apart from another.
 
-Let's load the demo data within R. To load the data in your R console we just need to read this linked CSV file (download and save it to the location of your choosing). Note that we also need to include several R packages using the command `library(XXX)` in our session first. In case you don't have installed them in your system, you need to do this in advance - either within your IDE or using the console command `install.packages("XXX")`:
+Let's load the demo data within R. To load the data in your R console we just need to read this linked [CSV file](https://github.com/GG-Delta/Delta-Science-Blog/blob/2ea1efb943a463da5d3bb115a567fd645604b7ef/posts/post-three/d_demo.csv "Demo data in CSV format") (download and save it to the location of your choosing). Note that we also need to include several R packages using the command `library(XXX)` in our session first. In case you don't have installed them in your system, you need to do this in advance - either within your IDE or using the console command `install.packages("XXX")`:
 
 ``` r
 # Load Required Packages ####
@@ -296,7 +298,7 @@ Happy coding & Cheers! 😃
 ::: {.callout-note collapse="true"}
 ## PS: How do I upload a local data file into Snowflake?
 
-In case you would like to replicate some of the SQL code directly in Snowflake, you would need to upload your local data file and make it available as a table. Please find the demo data as parquet-file in the link here (download the file and save it on your local machine).
+In case you would like to replicate some of the SQL code directly in Snowflake, you would need to upload your local data file and make it available as a table. Please find the [demo data as parquet file](https://github.com/GG-Delta/Delta-Science-Blog/blob/2ea1efb943a463da5d3bb115a567fd645604b7ef/posts/post-three/d_demo.parquet) in the link (download the file and save it on your local machine).
 
 Now, uploading this data file to Snowflake can be done in two simple steps:
 
