@@ -129,7 +129,7 @@ ORDER BY ID_LOC, TIMESTAMP
 
 ![Snowflake: Worksheet with results](screenshot_snowflake1.png)
 
-Nice, right? We made our first translation into SQL. If you know SQL already a bit, you will know about Common Table Expressions ([CTEs](https://docs.getdbt.com/terms/cte)).
+Nice, right? We made our first translation into SQL. If you know SQL already a bit, you will know about Common Table Expressions ([CTEs](https://docs.getdbt.com/terms/cte)). We can rephrase the code from the translation by using a CTE (please click the callout box below, if you are interested).
 
 ::: {.callout-tip collapse="true" icon="false"}
 ## Going (a bit) pro: Using a CTE
@@ -152,7 +152,7 @@ However, needless to say, both approaches work fine (producing identical results
 ![Snowflake: Worksheet with results (using CTE)](screenshot_snowflake2.png)
 :::
 
-In case you are interested why we need to apply `memdb_frame()` to our data frame containing our data: this function creates a actual table (instead of a data frame) in a temporary in-memory database (see the [documentation](https://dbplyr.tidyverse.org/reference/memdb_frame.html) for more details).
+In case you are interested why we need to apply `memdb_frame()` to our data frame containing our data: this function creates an actual table (instead of a data frame) in a temporary in-memory database (see the [documentation](https://dbplyr.tidyverse.org/reference/memdb_frame.html) for more details).
 
 # Second SQL Translation
 
@@ -293,7 +293,7 @@ I am hoping that these two examples have been interesting enough to get you star
 
 Happy coding & Cheers! 😃
 
-::: {.callout-note callapse="true"}
+::: {.callout-note collapse="true"}
 ## PS: How do I upload a local data file into Snowflake?
 
 In case you would like to replicate some of the SQL code directly in Snowflake, you would need to upload your local data file and make it available as a table. Please find the demo data as parquet-file in the link here (download the file and save it on your local machine).

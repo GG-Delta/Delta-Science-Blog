@@ -323,7 +323,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p></p><figcaption class="figure-caption">Snowflake: Worksheet with results</figcaption><p></p>
 </figure>
 </div>
-<p>Nice, right? We made our first translation into SQL. If you know SQL already a bit, you will know about Common Table Expressions (<a href="https://docs.getdbt.com/terms/cte">CTEs</a>).</p>
+<p>Nice, right? We made our first translation into SQL. If you know SQL already a bit, you will know about Common Table Expressions (<a href="https://docs.getdbt.com/terms/cte">CTEs</a>). We can rephrase the code from the translation by using a CTE (please click the callout box below, if you are interested).</p>
 <div class="callout-tip callout callout-style-default no-icon callout-captioned">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -355,7 +355,7 @@ Going (a bit) pro: Using a CTE
 </div>
 </div>
 </div>
-<p>In case you are interested why we need to apply <code>memdb_frame()</code> to our data frame containing our data: this function creates a actual table (instead of a data frame) in a temporary in-memory database (see the <a href="https://dbplyr.tidyverse.org/reference/memdb_frame.html">documentation</a> for more details).</p>
+<p>In case you are interested why we need to apply <code>memdb_frame()</code> to our data frame containing our data: this function creates an actual table (instead of a data frame) in a temporary in-memory database (see the <a href="https://dbplyr.tidyverse.org/reference/memdb_frame.html">documentation</a> for more details).</p>
 </section>
 <section id="second-sql-translation" class="level1">
 <h1>Second SQL Translation</h1>
@@ -489,15 +489,17 @@ SQL rephrased: Again using a CTE
 <p>I am hoping that these two examples have been interesting enough to get you started on your own exploration and the illustrated translation tool may be a useful resource for your learning journey.</p>
 <p>Happy coding &amp; Cheers! 😃</p>
 <div class="callout-note callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-caption-container flex-fill">
 PS: How do I upload a local data file into Snowflake?
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div class="callout-body-container callout-body" data-callapse="true">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <p>In case you would like to replicate some of the SQL code directly in Snowflake, you would need to upload your local data file and make it available as a table. Please find the demo data as parquet-file in the link here (download the file and save it on your local machine).</p>
 <p>Now, uploading this data file to Snowflake can be done in two simple steps:</p>
 <ol type="1">
@@ -543,6 +545,7 @@ PS: How do I upload a local data file into Snowflake?
 </figure>
 </div>
 </section>
+</div>
 </div>
 </div>
 
