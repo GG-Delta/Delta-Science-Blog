@@ -3,7 +3,7 @@ title: "A Shortcut To Deep SQL Coding "
 author: "GG Supp"
 date: "2023-05-24"
 categories: [sql, r, snowflake, productivity]
-image: "pexels-tuur-tisseghem-1022155.jpg"
+image: "pexels-boom-12585934.jpg"
 draft: false
 ---
 
