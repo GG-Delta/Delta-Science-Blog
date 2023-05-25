@@ -136,7 +136,7 @@ Nice, right? We made our first translation into SQL. If you know SQL already a b
 ::: {.callout-tip collapse="true" icon="false"}
 ## Going (a bit) pro: Using a CTE
 
-The output from show_query() can be refined by restructuring the SQL statement to include a CTE (Common Table Expression) in the beginning instead of using a nested structure in the middle of the code. It seems to be a widely shared opionion that programming SQL in this manner makes it easier to interpret for humans.
+The output from show_query() can be refined by restructuring the SQL statement to include a CTE (Common Table Expression) in the beginning instead of using a nested structure in the middle of the code. It seems to be a widely shared opinion that programming SQL in this manner makes it easier to interpret for humans.
 
 ``` sql
 WITH tmp_cte AS (
@@ -162,7 +162,7 @@ Based on our timestamp-based summary seen before it seems that there is consider
 
 How should we do that? By following these steps:
 
--    Creating a new column containing the day of a given timestamp (named TIMESTAMP_DAY)
+-   Creating a new column containing the day of a given timestamp (named TIMESTAMP_DAY)
 
 -   Group the data based on two attributes: location and day of the timestamp (ID_LOC and TIMESTAMP_DAY)
 

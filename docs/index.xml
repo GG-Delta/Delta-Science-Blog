@@ -138,7 +138,7 @@ Going (a bit) pro: Using a CTE
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>The output from show_query() can be refined by restructuring the SQL statement to include a CTE (Common Table Expression) in the beginning instead of using a nested structure in the middle of the code. It seems to be a widely shared opionion that programming SQL in this manner makes it easier to interpret for humans.</p>
+<p>The output from show_query() can be refined by restructuring the SQL statement to include a CTE (Common Table Expression) in the beginning instead of using a nested structure in the middle of the code. It seems to be a widely shared opinion that programming SQL in this manner makes it easier to interpret for humans.</p>
 <div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><span class="kw" style="color: #003B4F;">WITH</span> tmp_cte <span class="kw" style="color: #003B4F;">AS</span> (</span>
 <span id="cb5-2"><span class="kw" style="color: #003B4F;">SELECT</span> <span class="dt" style="color: #AD0000;">TIMESTAMP</span>, ID_LOC, <span class="fu" style="color: #4758AB;">COUNT</span>(<span class="op" style="color: #5E5E5E;">*</span>) <span class="kw" style="color: #003B4F;">AS</span> n</span>
 <span id="cb5-3">  <span class="kw" style="color: #003B4F;">FROM</span> D_SOURCE</span>
