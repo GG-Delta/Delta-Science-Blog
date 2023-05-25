@@ -19,11 +19,11 @@ SQL coding is an important part of data engineering, but mastering it can be a d
 
 SQL coding is essential for many data engineering applications or services, especially when working with modern data warehouses like Snowflake and Databricks, as well as for data modelling in dbt.
 
-Clearly not everybody can be considered "native" in SQL and mastering it from scratch can be a daunting and time-consuming. Yet what if our existing knowledge could actually help us learn a new language?
+Clearly not everybody can be considered "native" in SQL and mastering it from scratch can be daunting and time-consuming. Yet what if our existing knowledge could actually help us learn a new language?
 
 Since many data professionals have already cultivated programming skills in languages like Python, R, Octave, Julia, etc. I was always wandering how the knowledge of one coding language might support the acquisition of another one.
 
-One might be tempted to think that the knowledge of one programming language might make it harder to learn a different one. The variations in syntax, function names, data types, and so on can quickly lead to confusion and make the learning process more challenging.
+One might be tempted to assume that the knowledge of one programming language might make it harder to learn a different one. The variations in syntax, function names, data types, and so on can quickly lead to confusion and make the learning process more challenging.
 
 However, what if we can use translations tools in order to make the switch to SQL easier and progressive? Using translation tools, we can start to learn in a step-by-step approach, making it easier not only to get started but also to go deeper into SQL.
 
