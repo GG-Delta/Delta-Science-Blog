@@ -1,0 +1,20 @@
+---
+title: "Testing New Post: SQL Coding "
+author: "GG Supp"
+date: "2023-06-24"
+categories: [sql, r, snowflake, productivity]
+image: "pexels-boom-12585934.jpg"
+draft: true
+---
+
+# Summary
+
+SQL coding .... [*tidyverse*](https://www.tidyverse.org/ "The tidyverse is a collection of R packages built for data science.")).
+
+------------------------------------------------------------------------
+
+> This post is in appreciation of ...
+
+# Introduction
+
+SQL coding is essential for many data engineering applications or services, especially when working with modern data warehouses like Snowflake and Databricks, as well as for data modelling in dbt.

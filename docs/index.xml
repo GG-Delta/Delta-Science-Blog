@@ -6,15 +6,15 @@
       version="2.0">
 <channel>
 <title>Delta-Science-Blog</title>
-<link>https://gg-delta.github.io/Delta-Science-Blog/index.html</link>
+<link>https://gg-delta.github.io/Delta-Science-Blog/</link>
 <atom:link href="https://gg-delta.github.io/Delta-Science-Blog/index.xml" rel="self" type="application/rss+xml"/>
 <description>Time saving solutions in data science, programming and reproducable research</description>
-<generator>quarto-1.2.475</generator>
+<generator>quarto-1.4.555</generator>
 <lastBuildDate>Tue, 23 May 2023 23:00:00 GMT</lastBuildDate>
 <item>
   <title>A Shortcut To Deep SQL Coding</title>
   <dc:creator>GG Supp</dc:creator>
-  <link>https://gg-delta.github.io/Delta-Science-Blog/posts/post-three/index.html</link>
+  <link>https://gg-delta.github.io/Delta-Science-Blog/posts/post-three/</link>
   <description><![CDATA[ 
 
 
@@ -45,80 +45,282 @@
 <h1>Demo Data</h1>
 <p>As our toy data we will use a subset of weather API requests that were collected in the course of a data engineering project. The data contain atmospheric pressure and temperature records for three seperate locations, each about 25 km apart from another.</p>
 <p>Let’s load the demo data within R. To load the data in your R console we just need to read this linked <a href="https://github.com/GG-Delta/Delta-Science-Blog/blob/2ea1efb943a463da5d3bb115a567fd645604b7ef/posts/post-three/d_demo.csv" title="Demo data in CSV format">CSV file</a> (download and save it to the location of your choosing). Note that we also need to include several R packages using the command <code>library(XXX)</code> in our session first. In case you don’t have installed them in your system, you need to do this in advance - either within your IDE or using the console command <code>install.packages("XXX")</code>:</p>
-<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;"># Load Required Packages ####</span></span>
-<span id="cb1-2"><span class="fu" style="color: #4758AB;">library</span>(readr)     <span class="co" style="color: #5E5E5E;"># reading files</span></span>
-<span id="cb1-3"><span class="fu" style="color: #4758AB;">library</span>(lubridate) <span class="co" style="color: #5E5E5E;"># dealing with date/time</span></span>
-<span id="cb1-4"><span class="fu" style="color: #4758AB;">library</span>(dbplyr)    <span class="co" style="color: #5E5E5E;"># sql support </span></span>
-<span id="cb1-5"><span class="fu" style="color: #4758AB;">library</span>(dplyr)     <span class="co" style="color: #5E5E5E;"># sql support</span></span>
-<span id="cb1-6"><span class="fu" style="color: #4758AB;">library</span>(RSQLite)   <span class="co" style="color: #5E5E5E;"># sql support</span></span>
+<div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Load Required Packages ####</span></span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(readr)     <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># reading files</span></span>
+<span id="cb1-3"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(lubridate) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># dealing with date/time</span></span>
+<span id="cb1-4"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(dbplyr)    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># sql support </span></span>
+<span id="cb1-5"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(dplyr)     <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># sql support</span></span>
+<span id="cb1-6"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(RSQLite)   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># sql support</span></span>
 <span id="cb1-7"></span>
-<span id="cb1-8"><span class="co" style="color: #5E5E5E;"># Load Demo Data ####</span></span>
-<span id="cb1-9">src_file <span class="ot" style="color: #003B4F;">=</span> <span class="st" style="color: #20794D;">"./data/d_demo.csv"</span></span>
-<span id="cb1-10">d_source <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">read_csv</span>(src_file, <span class="at" style="color: #657422;">col_names =</span> <span class="cn" style="color: #8f5902;">TRUE</span>, <span class="at" style="color: #657422;">show_col_types =</span> <span class="cn" style="color: #8f5902;">FALSE</span>)</span>
+<span id="cb1-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Load Demo Data ####</span></span>
+<span id="cb1-9">src_file <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"./data/d_demo.csv"</span></span>
+<span id="cb1-10">d_source <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">read_csv</span>(src_file, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">col_names =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">TRUE</span>, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">show_col_types =</span> <span class="cn" style="color: #8f5902;
+background-color: null;
+font-style: inherit;">FALSE</span>)</span>
 <span id="cb1-11"></span>
-<span id="cb1-12"><span class="co" style="color: #5E5E5E;"># Quick Data Overview</span></span>
-<span id="cb1-13"><span class="fu" style="color: #4758AB;">glimpse</span>(d_source)</span>
-<span id="cb1-14"><span class="co" style="color: #5E5E5E;"># Rows: 6,912</span></span>
-<span id="cb1-15"><span class="co" style="color: #5E5E5E;"># Columns: 8</span></span>
-<span id="cb1-16"><span class="co" style="color: #5E5E5E;"># $ ID_LOC          &lt;chr&gt; "id2", "id2", "id2", "id2", "id2", "id2", …</span></span>
-<span id="cb1-17"><span class="co" style="color: #5E5E5E;"># $ TIME_ZONE       &lt;chr&gt; "GMT", "GMT", "GMT", "GMT", "GMT", "GMT", …</span></span>
-<span id="cb1-18"><span class="co" style="color: #5E5E5E;"># $ TIMESTAMP       &lt;dttm&gt; 2023-04-23 03:39:13, 2023-04-23 03:39:13, …</span></span>
-<span id="cb1-19"><span class="co" style="color: #5E5E5E;"># $ TIMESTAMP_UNIX  &lt;dbl&gt; 1.682221e+12, 1.682221e+12, 1.682221e+12, …</span></span>
-<span id="cb1-20"><span class="co" style="color: #5E5E5E;"># $ TIME            &lt;dttm&gt; 2023-04-22 00:00:00, 2023-04-22 04:00:00, …</span></span>
-<span id="cb1-21"><span class="co" style="color: #5E5E5E;"># $ PRESSURE_MSL    &lt;dbl&gt; 1015.4, 1014.2, 1015.6, 1015.6, 1015.4, …</span></span>
-<span id="cb1-22"><span class="co" style="color: #5E5E5E;"># $ TEMPERATURE_2M  &lt;dbl&gt; 18.9, 17.7, 22.3, 20.5, 15.7, 17.6, 23.7, …</span></span>
-<span id="cb1-23"><span class="co" style="color: #5E5E5E;"># $ TEMPERATURE_80M &lt;dbl&gt; 18.6, 19.8, 19.5, 20.0, 19.8, 20.4, 21.2, …</span></span></code></pre></div>
+<span id="cb1-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Quick Data Overview</span></span>
+<span id="cb1-13"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">glimpse</span>(d_source)</span>
+<span id="cb1-14"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Rows: 6,912</span></span>
+<span id="cb1-15"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Columns: 8</span></span>
+<span id="cb1-16"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># $ ID_LOC          &lt;chr&gt; "id2", "id2", "id2", "id2", "id2", "id2", …</span></span>
+<span id="cb1-17"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># $ TIME_ZONE       &lt;chr&gt; "GMT", "GMT", "GMT", "GMT", "GMT", "GMT", …</span></span>
+<span id="cb1-18"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># $ TIMESTAMP       &lt;dttm&gt; 2023-04-23 03:39:13, 2023-04-23 03:39:13, …</span></span>
+<span id="cb1-19"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># $ TIMESTAMP_UNIX  &lt;dbl&gt; 1.682221e+12, 1.682221e+12, 1.682221e+12, …</span></span>
+<span id="cb1-20"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># $ TIME            &lt;dttm&gt; 2023-04-22 00:00:00, 2023-04-22 04:00:00, …</span></span>
+<span id="cb1-21"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># $ PRESSURE_MSL    &lt;dbl&gt; 1015.4, 1014.2, 1015.6, 1015.6, 1015.4, …</span></span>
+<span id="cb1-22"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># $ TEMPERATURE_2M  &lt;dbl&gt; 18.9, 17.7, 22.3, 20.5, 15.7, 17.6, 23.7, …</span></span>
+<span id="cb1-23"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># $ TEMPERATURE_80M &lt;dbl&gt; 18.6, 19.8, 19.5, 20.0, 19.8, 20.4, 21.2, …</span></span></code></pre></div>
 <p>From the display of the sample information, there are around 6900 records listed across 8 columns. Additionally, there is a TIMESTAMP field that indicates when the API query was run, and an ID_LOC field displaying the location identifier for which weather details were obtained (three places in total: id1, id2, id3).</p>
 </section>
 <section id="first-sql-translation" class="level1">
 <h1>First SQL Translation</h1>
 <p>To get a better undertstanding of the data, let’s ask some questions regarding the scope of the demo data: How often was the API request run for each location and how many days are present in the TIMESTAMP column?</p>
-<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">d_source <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb2-2">  <span class="fu" style="color: #4758AB;">count</span>(TIMESTAMP, ID_LOC) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb2-3">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">prop =</span> n<span class="sc" style="color: #5E5E5E;">/</span><span class="fu" style="color: #4758AB;">sum</span>(n)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb2-4">  <span class="fu" style="color: #4758AB;">arrange</span>(ID_LOC, TIMESTAMP) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb2-5">  <span class="fu" style="color: #4758AB;">print</span>(<span class="at" style="color: #657422;">n=</span><span class="dv" style="color: #AD0000;">12</span>) <span class="co" style="color: #5E5E5E;"># restricting the output to the first 12 rows</span></span>
+<div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1">d_source <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">count</span>(TIMESTAMP, ID_LOC) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">prop =</span> n<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(n)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrange</span>(ID_LOC, TIMESTAMP) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb2-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">print</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">n=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">12</span>) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># restricting the output to the first 12 rows</span></span>
 <span id="cb2-6"></span>
-<span id="cb2-7"><span class="co" style="color: #5E5E5E;"># A tibble: 36 × 4</span></span>
-<span id="cb2-8"><span class="co" style="color: #5E5E5E;">#   TIMESTAMP           ID_LOC     n   prop</span></span>
-<span id="cb2-9"><span class="co" style="color: #5E5E5E;">#    &lt;dttm&gt;              &lt;chr&gt;  &lt;int&gt;  &lt;dbl&gt;</span></span>
-<span id="cb2-10"><span class="co" style="color: #5E5E5E;">#  1 2023-04-23 05:57:35 id1      192 0.0278</span></span>
-<span id="cb2-11"><span class="co" style="color: #5E5E5E;">#  2 2023-04-23 11:57:35 id1      192 0.0278</span></span>
-<span id="cb2-12"><span class="co" style="color: #5E5E5E;">#  3 2023-04-23 17:57:35 id1      192 0.0278</span></span>
-<span id="cb2-13"><span class="co" style="color: #5E5E5E;">#  4 2023-04-23 23:57:36 id1      192 0.0278</span></span>
-<span id="cb2-14"><span class="co" style="color: #5E5E5E;">#  5 2023-04-24 05:57:36 id1      192 0.0278</span></span>
-<span id="cb2-15"><span class="co" style="color: #5E5E5E;">#  6 2023-04-24 11:57:36 id1      192 0.0278</span></span>
-<span id="cb2-16"><span class="co" style="color: #5E5E5E;">#  7 2023-04-24 17:57:36 id1      192 0.0278</span></span>
-<span id="cb2-17"><span class="co" style="color: #5E5E5E;">#  8 2023-04-24 23:57:36 id1      192 0.0278</span></span>
-<span id="cb2-18"><span class="co" style="color: #5E5E5E;">#  9 2023-04-25 05:57:37 id1      192 0.0278</span></span>
-<span id="cb2-19"><span class="co" style="color: #5E5E5E;"># 10 2023-04-25 11:57:37 id1      192 0.0278</span></span>
-<span id="cb2-20"><span class="co" style="color: #5E5E5E;"># 11 2023-04-25 17:57:37 id1      192 0.0278</span></span>
-<span id="cb2-21"><span class="co" style="color: #5E5E5E;"># 12 2023-04-25 23:57:37 id1      192 0.0278</span></span>
-<span id="cb2-22"><span class="co" style="color: #5E5E5E;"># # ℹ 24 more rows</span></span></code></pre></div>
+<span id="cb2-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># A tibble: 36 × 4</span></span>
+<span id="cb2-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#   TIMESTAMP           ID_LOC     n   prop</span></span>
+<span id="cb2-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#    &lt;dttm&gt;              &lt;chr&gt;  &lt;int&gt;  &lt;dbl&gt;</span></span>
+<span id="cb2-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#  1 2023-04-23 05:57:35 id1      192 0.0278</span></span>
+<span id="cb2-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#  2 2023-04-23 11:57:35 id1      192 0.0278</span></span>
+<span id="cb2-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#  3 2023-04-23 17:57:35 id1      192 0.0278</span></span>
+<span id="cb2-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#  4 2023-04-23 23:57:36 id1      192 0.0278</span></span>
+<span id="cb2-14"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#  5 2023-04-24 05:57:36 id1      192 0.0278</span></span>
+<span id="cb2-15"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#  6 2023-04-24 11:57:36 id1      192 0.0278</span></span>
+<span id="cb2-16"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#  7 2023-04-24 17:57:36 id1      192 0.0278</span></span>
+<span id="cb2-17"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#  8 2023-04-24 23:57:36 id1      192 0.0278</span></span>
+<span id="cb2-18"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#  9 2023-04-25 05:57:37 id1      192 0.0278</span></span>
+<span id="cb2-19"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 10 2023-04-25 11:57:37 id1      192 0.0278</span></span>
+<span id="cb2-20"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 11 2023-04-25 17:57:37 id1      192 0.0278</span></span>
+<span id="cb2-21"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 12 2023-04-25 23:57:37 id1      192 0.0278</span></span>
+<span id="cb2-22"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># # ℹ 24 more rows</span></span></code></pre></div>
 <p>That is, the demo data contain 3 days of API requests, 4 requests per day for each location, making in total 3 x 4 x 3 = 36 individual timestamps (API requests).</p>
 <p>How can we get this exact timestamp-based summary translated to a proper SQL command? That’s quite easy: we just need to add two additional commands to the basic R code shown before, <code>memdb_frame()</code> at the beginning and <code>show_query()</code> at the end:</p>
-<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"> <span class="fu" style="color: #4758AB;">memdb_frame</span>(d_source) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb3-2">  <span class="fu" style="color: #4758AB;">count</span>(TIMESTAMP, ID_LOC) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb3-3">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">prop =</span> n<span class="sc" style="color: #5E5E5E;">/</span><span class="fu" style="color: #4758AB;">sum</span>(n)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb3-4">  <span class="fu" style="color: #4758AB;">arrange</span>(ID_LOC, TIMESTAMP) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb3-5">  <span class="fu" style="color: #4758AB;">show_query</span>()</span>
+<div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">memdb_frame</span>(d_source) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb3-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">count</span>(TIMESTAMP, ID_LOC) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb3-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">prop =</span> n<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(n)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb3-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrange</span>(ID_LOC, TIMESTAMP) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb3-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">show_query</span>()</span>
 <span id="cb3-6"> </span>
-<span id="cb3-7"><span class="co" style="color: #5E5E5E;"># &lt;SQL&gt;</span></span>
-<span id="cb3-8"><span class="co" style="color: #5E5E5E;"># SELECT *, `n` / SUM(`n`) OVER () AS `prop`</span></span>
-<span id="cb3-9"><span class="co" style="color: #5E5E5E;"># FROM (</span></span>
-<span id="cb3-10"><span class="co" style="color: #5E5E5E;">#   SELECT `TIMESTAMP`, `ID_LOC`, COUNT(*) AS `n`</span></span>
-<span id="cb3-11"><span class="co" style="color: #5E5E5E;">#   FROM `dbplyr_003`</span></span>
-<span id="cb3-12"><span class="co" style="color: #5E5E5E;">#   GROUP BY `TIMESTAMP`, `ID_LOC`</span></span>
-<span id="cb3-13"><span class="co" style="color: #5E5E5E;"># )</span></span>
-<span id="cb3-14"><span class="co" style="color: #5E5E5E;"># ORDER BY `ID_LOC`, `TIMESTAMP`</span></span></code></pre></div>
+<span id="cb3-7"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># &lt;SQL&gt;</span></span>
+<span id="cb3-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># SELECT *, `n` / SUM(`n`) OVER () AS `prop`</span></span>
+<span id="cb3-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># FROM (</span></span>
+<span id="cb3-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#   SELECT `TIMESTAMP`, `ID_LOC`, COUNT(*) AS `n`</span></span>
+<span id="cb3-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#   FROM `dbplyr_003`</span></span>
+<span id="cb3-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#   GROUP BY `TIMESTAMP`, `ID_LOC`</span></span>
+<span id="cb3-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># )</span></span>
+<span id="cb3-14"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ORDER BY `ID_LOC`, `TIMESTAMP`</span></span></code></pre></div>
 <p>We can utilize this SQL code in Snowflake, omitting the quotation marks. Remember to substitute the dataframe name with the actual table name, i.e.&nbsp;D_SOURCE.</p>
-<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><span class="kw" style="color: #003B4F;">SELECT</span> <span class="op" style="color: #5E5E5E;">*</span>, n <span class="op" style="color: #5E5E5E;">/</span> <span class="fu" style="color: #4758AB;">SUM</span>(n) <span class="kw" style="color: #003B4F;">OVER</span> () <span class="kw" style="color: #003B4F;">AS</span> prop</span>
-<span id="cb4-2"><span class="kw" style="color: #003B4F;">FROM</span> (</span>
-<span id="cb4-3">  <span class="kw" style="color: #003B4F;">SELECT</span> <span class="dt" style="color: #AD0000;">TIMESTAMP</span>, ID_LOC, <span class="fu" style="color: #4758AB;">COUNT</span>(<span class="op" style="color: #5E5E5E;">*</span>) <span class="kw" style="color: #003B4F;">AS</span> n</span>
-<span id="cb4-4">  <span class="kw" style="color: #003B4F;">FROM</span> D_SOURCE</span>
-<span id="cb4-5">  <span class="kw" style="color: #003B4F;">GROUP</span> <span class="kw" style="color: #003B4F;">BY</span> <span class="dt" style="color: #AD0000;">TIMESTAMP</span>, ID_LOC</span>
+<div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">SELECT</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>, n <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">SUM</span>(n) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">OVER</span> () <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">AS</span> prop</span>
+<span id="cb4-2"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">FROM</span> (</span>
+<span id="cb4-3">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">SELECT</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">TIMESTAMP</span>, ID_LOC, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">COUNT</span>(<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">AS</span> n</span>
+<span id="cb4-4">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">FROM</span> D_SOURCE</span>
+<span id="cb4-5">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">GROUP</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">BY</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">TIMESTAMP</span>, ID_LOC</span>
 <span id="cb4-6">)</span>
-<span id="cb4-7"><span class="kw" style="color: #003B4F;">ORDER</span> <span class="kw" style="color: #003B4F;">BY</span> ID_LOC, <span class="dt" style="color: #AD0000;">TIMESTAMP</span></span></code></pre></div>
+<span id="cb4-7"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">ORDER</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">BY</span> ID_LOC, <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">TIMESTAMP</span></span></code></pre></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://gg-delta.github.io/Delta-Science-Blog/posts/post-three/screenshot_snowflake1.png" class="img-fluid figure-img"></p>
@@ -139,14 +341,56 @@ Going (a bit) pro: Using a CTE
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The output from show_query() can be refined by restructuring the SQL statement to include a CTE (Common Table Expression) in the beginning instead of using a nested structure in the middle of the code. It seems to be a widely shared opinion that programming SQL in this manner makes it easier to interpret for humans.</p>
-<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><span class="kw" style="color: #003B4F;">WITH</span> tmp_cte <span class="kw" style="color: #003B4F;">AS</span> (</span>
-<span id="cb5-2"><span class="kw" style="color: #003B4F;">SELECT</span> <span class="dt" style="color: #AD0000;">TIMESTAMP</span>, ID_LOC, <span class="fu" style="color: #4758AB;">COUNT</span>(<span class="op" style="color: #5E5E5E;">*</span>) <span class="kw" style="color: #003B4F;">AS</span> n</span>
-<span id="cb5-3">  <span class="kw" style="color: #003B4F;">FROM</span> D_SOURCE</span>
-<span id="cb5-4">  <span class="kw" style="color: #003B4F;">GROUP</span> <span class="kw" style="color: #003B4F;">BY</span> <span class="dt" style="color: #AD0000;">TIMESTAMP</span>, ID_LOC</span>
+<div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">WITH</span> tmp_cte <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">AS</span> (</span>
+<span id="cb5-2"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">SELECT</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">TIMESTAMP</span>, ID_LOC, <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">COUNT</span>(<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">AS</span> n</span>
+<span id="cb5-3">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">FROM</span> D_SOURCE</span>
+<span id="cb5-4">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">GROUP</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">BY</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">TIMESTAMP</span>, ID_LOC</span>
 <span id="cb5-5">)</span>
-<span id="cb5-6"><span class="kw" style="color: #003B4F;">SELECT</span> <span class="op" style="color: #5E5E5E;">*</span>, n <span class="op" style="color: #5E5E5E;">/</span> <span class="fu" style="color: #4758AB;">SUM</span>(n) <span class="kw" style="color: #003B4F;">OVER</span> () <span class="kw" style="color: #003B4F;">AS</span> prop</span>
-<span id="cb5-7"><span class="kw" style="color: #003B4F;">FROM</span> tmp_cte</span>
-<span id="cb5-8"><span class="kw" style="color: #003B4F;">ORDER</span> <span class="kw" style="color: #003B4F;">BY</span> ID_LOC, <span class="dt" style="color: #AD0000;">TIMESTAMP</span>  </span></code></pre></div>
+<span id="cb5-6"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">SELECT</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>, n <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">SUM</span>(n) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">OVER</span> () <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">AS</span> prop</span>
+<span id="cb5-7"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">FROM</span> tmp_cte</span>
+<span id="cb5-8"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">ORDER</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">BY</span> ID_LOC, <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">TIMESTAMP</span>  </span></code></pre></div>
 <p>However, needless to say, both approaches work fine (producing identical results).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -169,80 +413,272 @@ Going (a bit) pro: Using a CTE
 <li><p>Selecting the latest/highest (maximum) timestamp from the grouped data</p></li>
 </ul>
 <p>The following R code can be used to implement and confirm the results of these operations (1 API call per location and day):</p>
-<div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">d_work1 <span class="ot" style="color: #003B4F;">&lt;-</span></span>
-<span id="cb6-2">  d_source <span class="sc" style="color: #5E5E5E;">%&gt;%</span></span>
-<span id="cb6-3">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">TIMESTAMP_DAY =</span> <span class="fu" style="color: #4758AB;">date</span>(TIMESTAMP)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb6-4">  <span class="fu" style="color: #4758AB;">group_by</span>(ID_LOC, TIMESTAMP_DAY) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb6-5">  <span class="fu" style="color: #4758AB;">slice_max</span>(TIMESTAMP, <span class="at" style="color: #657422;">n=</span><span class="dv" style="color: #AD0000;">1</span>) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb6-6">  <span class="fu" style="color: #4758AB;">ungroup</span>()</span>
+<div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1">d_work1 <span class="ot" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">&lt;-</span></span>
+<span id="cb6-2">  d_source <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span></span>
+<span id="cb6-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">TIMESTAMP_DAY =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">date</span>(TIMESTAMP)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb6-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(ID_LOC, TIMESTAMP_DAY) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb6-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">slice_max</span>(TIMESTAMP, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">n=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb6-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ungroup</span>()</span>
 <span id="cb6-7"></span>
-<span id="cb6-8">d_work1 <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb6-9">  <span class="fu" style="color: #4758AB;">count</span>(TIMESTAMP, ID_LOC) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb6-10">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">prop =</span> n<span class="sc" style="color: #5E5E5E;">/</span><span class="fu" style="color: #4758AB;">sum</span>(n)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb6-11">  <span class="fu" style="color: #4758AB;">arrange</span>(ID_LOC, TIMESTAMP)</span>
+<span id="cb6-8">d_work1 <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb6-9">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">count</span>(TIMESTAMP, ID_LOC) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb6-10">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">prop =</span> n<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">sum</span>(n)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb6-11">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">arrange</span>(ID_LOC, TIMESTAMP)</span>
 <span id="cb6-12"></span>
-<span id="cb6-13"><span class="co" style="color: #5E5E5E;"># # A tibble: 9 × 4</span></span>
-<span id="cb6-14"><span class="co" style="color: #5E5E5E;">#   TIMESTAMP           ID_LOC     n  prop</span></span>
-<span id="cb6-15"><span class="co" style="color: #5E5E5E;">#   &lt;dttm&gt;              &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt;</span></span>
-<span id="cb6-16"><span class="co" style="color: #5E5E5E;"># 1 2023-04-23 23:57:36 id1      192 0.111</span></span>
-<span id="cb6-17"><span class="co" style="color: #5E5E5E;"># 2 2023-04-24 23:57:36 id1      192 0.111</span></span>
-<span id="cb6-18"><span class="co" style="color: #5E5E5E;"># 3 2023-04-25 23:57:37 id1      192 0.111</span></span>
-<span id="cb6-19"><span class="co" style="color: #5E5E5E;"># 4 2023-04-23 21:39:14 id2      192 0.111</span></span>
-<span id="cb6-20"><span class="co" style="color: #5E5E5E;"># 5 2023-04-24 21:00:18 id2      192 0.111</span></span>
-<span id="cb6-21"><span class="co" style="color: #5E5E5E;"># 6 2023-04-25 21:00:19 id2      192 0.111</span></span>
-<span id="cb6-22"><span class="co" style="color: #5E5E5E;"># 7 2023-04-23 21:42:50 id3      192 0.111</span></span>
-<span id="cb6-23"><span class="co" style="color: #5E5E5E;"># 8 2023-04-24 21:42:51 id3      192 0.111</span></span>
-<span id="cb6-24"><span class="co" style="color: #5E5E5E;"># 9 2023-04-25 21:42:52 id3      192 0.111</span></span></code></pre></div>
+<span id="cb6-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># # A tibble: 9 × 4</span></span>
+<span id="cb6-14"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#   TIMESTAMP           ID_LOC     n  prop</span></span>
+<span id="cb6-15"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#   &lt;dttm&gt;              &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt;</span></span>
+<span id="cb6-16"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1 2023-04-23 23:57:36 id1      192 0.111</span></span>
+<span id="cb6-17"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2 2023-04-24 23:57:36 id1      192 0.111</span></span>
+<span id="cb6-18"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3 2023-04-25 23:57:37 id1      192 0.111</span></span>
+<span id="cb6-19"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 4 2023-04-23 21:39:14 id2      192 0.111</span></span>
+<span id="cb6-20"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 5 2023-04-24 21:00:18 id2      192 0.111</span></span>
+<span id="cb6-21"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 6 2023-04-25 21:00:19 id2      192 0.111</span></span>
+<span id="cb6-22"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 7 2023-04-23 21:42:50 id3      192 0.111</span></span>
+<span id="cb6-23"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 8 2023-04-24 21:42:51 id3      192 0.111</span></span>
+<span id="cb6-24"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 9 2023-04-25 21:42:52 id3      192 0.111</span></span></code></pre></div>
 <p>Again, let’s translate this R code of the data transformation into SQL by including <code>memdb_frame()</code> at the beginning and <code>show_query()</code> at the end of the code:</p>
-<div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;">memdb_frame</span>(d_source) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb7-2">  <span class="fu" style="color: #4758AB;">mutate</span>(<span class="at" style="color: #657422;">TIMESTAMP_DAY =</span> <span class="fu" style="color: #4758AB;">date</span>(TIMESTAMP)) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb7-3">  <span class="fu" style="color: #4758AB;">group_by</span>(ID_LOC, TIMESTAMP_DAY) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb7-4">  <span class="fu" style="color: #4758AB;">slice_max</span>(TIMESTAMP, <span class="at" style="color: #657422;">n=</span><span class="dv" style="color: #AD0000;">1</span>) <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb7-5">  <span class="fu" style="color: #4758AB;">ungroup</span>() <span class="sc" style="color: #5E5E5E;">%&gt;%</span> </span>
-<span id="cb7-6">  <span class="fu" style="color: #4758AB;">show_query</span>()</span>
+<div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">memdb_frame</span>(d_source) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb7-2">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">mutate</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">TIMESTAMP_DAY =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">date</span>(TIMESTAMP)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb7-3">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">group_by</span>(ID_LOC, TIMESTAMP_DAY) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb7-4">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">slice_max</span>(TIMESTAMP, <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">n=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb7-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ungroup</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">%&gt;%</span> </span>
+<span id="cb7-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">show_query</span>()</span>
 <span id="cb7-7"></span>
-<span id="cb7-8"><span class="co" style="color: #5E5E5E;"># &lt;SQL&gt;</span></span>
-<span id="cb7-9"><span class="co" style="color: #5E5E5E;"># SELECT</span></span>
-<span id="cb7-10"><span class="co" style="color: #5E5E5E;">#   `ID_LOC`,</span></span>
-<span id="cb7-11"><span class="co" style="color: #5E5E5E;">#   `TIME_ZONE`,</span></span>
-<span id="cb7-12"><span class="co" style="color: #5E5E5E;">#   `TIMESTAMP`,</span></span>
-<span id="cb7-13"><span class="co" style="color: #5E5E5E;">#   `TIMESTAMP_UNIX`,</span></span>
-<span id="cb7-14"><span class="co" style="color: #5E5E5E;">#   `TIME`,</span></span>
-<span id="cb7-15"><span class="co" style="color: #5E5E5E;">#   `PRESSURE_MSL`,</span></span>
-<span id="cb7-16"><span class="co" style="color: #5E5E5E;">#   `TEMPERATURE_2M`,</span></span>
-<span id="cb7-17"><span class="co" style="color: #5E5E5E;">#   `TEMPERATURE_80M`,</span></span>
-<span id="cb7-18"><span class="co" style="color: #5E5E5E;">#   `TIMESTAMP_DAY`</span></span>
-<span id="cb7-19"><span class="co" style="color: #5E5E5E;"># FROM (</span></span>
-<span id="cb7-20"><span class="co" style="color: #5E5E5E;">#   SELECT</span></span>
-<span id="cb7-21"><span class="co" style="color: #5E5E5E;">#     *,</span></span>
-<span id="cb7-22"><span class="co" style="color: #5E5E5E;">#     RANK() OVER (PARTITION BY `ID_LOC`, `TIMESTAMP_DAY` ORDER BY `TIMESTAMP` DESC) AS `q01`</span></span>
-<span id="cb7-23"><span class="co" style="color: #5E5E5E;">#   FROM (</span></span>
-<span id="cb7-24"><span class="co" style="color: #5E5E5E;">#     SELECT *, date(`TIMESTAMP`) AS `TIMESTAMP_DAY`</span></span>
-<span id="cb7-25"><span class="co" style="color: #5E5E5E;">#     FROM `dbplyr_004`</span></span>
-<span id="cb7-26"><span class="co" style="color: #5E5E5E;">#   )</span></span>
-<span id="cb7-27"><span class="co" style="color: #5E5E5E;"># )</span></span>
-<span id="cb7-28"><span class="co" style="color: #5E5E5E;"># WHERE (`q01` &lt;= 1)</span></span></code></pre></div>
+<span id="cb7-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># &lt;SQL&gt;</span></span>
+<span id="cb7-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># SELECT</span></span>
+<span id="cb7-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#   `ID_LOC`,</span></span>
+<span id="cb7-11"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#   `TIME_ZONE`,</span></span>
+<span id="cb7-12"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#   `TIMESTAMP`,</span></span>
+<span id="cb7-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#   `TIMESTAMP_UNIX`,</span></span>
+<span id="cb7-14"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#   `TIME`,</span></span>
+<span id="cb7-15"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#   `PRESSURE_MSL`,</span></span>
+<span id="cb7-16"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#   `TEMPERATURE_2M`,</span></span>
+<span id="cb7-17"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#   `TEMPERATURE_80M`,</span></span>
+<span id="cb7-18"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#   `TIMESTAMP_DAY`</span></span>
+<span id="cb7-19"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># FROM (</span></span>
+<span id="cb7-20"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#   SELECT</span></span>
+<span id="cb7-21"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#     *,</span></span>
+<span id="cb7-22"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#     RANK() OVER (PARTITION BY `ID_LOC`, `TIMESTAMP_DAY` ORDER BY `TIMESTAMP` DESC) AS `q01`</span></span>
+<span id="cb7-23"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#   FROM (</span></span>
+<span id="cb7-24"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#     SELECT *, date(`TIMESTAMP`) AS `TIMESTAMP_DAY`</span></span>
+<span id="cb7-25"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#     FROM `dbplyr_004`</span></span>
+<span id="cb7-26"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#   )</span></span>
+<span id="cb7-27"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># )</span></span>
+<span id="cb7-28"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># WHERE (`q01` &lt;= 1)</span></span></code></pre></div>
 <p>We can utilize this SQL code again in Snowflake, after omitting the quotation marks.</p>
-<div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><span class="kw" style="color: #003B4F;">SELECT</span></span>
+<div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">SELECT</span></span>
 <span id="cb8-2">  ID_LOC,</span>
-<span id="cb8-3">  <span class="kw" style="color: #003B4F;">TIME_ZONE</span>,</span>
-<span id="cb8-4">  <span class="dt" style="color: #AD0000;">TIMESTAMP</span>,</span>
+<span id="cb8-3">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">TIME_ZONE</span>,</span>
+<span id="cb8-4">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">TIMESTAMP</span>,</span>
 <span id="cb8-5">  TIMESTAMP_UNIX,</span>
-<span id="cb8-6">  <span class="dt" style="color: #AD0000;">TIME</span>,</span>
+<span id="cb8-6">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">TIME</span>,</span>
 <span id="cb8-7">  PRESSURE_MSL,</span>
 <span id="cb8-8">  TEMPERATURE_2M,</span>
 <span id="cb8-9">  TEMPERATURE_80M,</span>
 <span id="cb8-10">  TIMESTAMP_DAY</span>
-<span id="cb8-11"><span class="kw" style="color: #003B4F;">FROM</span> (</span>
-<span id="cb8-12">  <span class="kw" style="color: #003B4F;">SELECT</span></span>
-<span id="cb8-13">    <span class="op" style="color: #5E5E5E;">*</span>,</span>
-<span id="cb8-14">    <span class="fu" style="color: #4758AB;">RANK</span>() <span class="kw" style="color: #003B4F;">OVER</span> (<span class="kw" style="color: #003B4F;">PARTITION</span> <span class="kw" style="color: #003B4F;">BY</span> ID_LOC, TIMESTAMP_DAY <span class="kw" style="color: #003B4F;">ORDER</span> <span class="kw" style="color: #003B4F;">BY</span> <span class="dt" style="color: #AD0000;">TIMESTAMP</span> <span class="kw" style="color: #003B4F;">DESC</span>) <span class="kw" style="color: #003B4F;">AS</span> q01</span>
-<span id="cb8-15">  <span class="kw" style="color: #003B4F;">FROM</span> (</span>
-<span id="cb8-16">    <span class="kw" style="color: #003B4F;">SELECT</span> <span class="op" style="color: #5E5E5E;">*</span>, <span class="dt" style="color: #AD0000;">date</span>(<span class="dt" style="color: #AD0000;">TIMESTAMP</span>) <span class="kw" style="color: #003B4F;">AS</span> TIMESTAMP_DAY</span>
-<span id="cb8-17">    <span class="kw" style="color: #003B4F;">FROM</span> D_SOURCE</span>
+<span id="cb8-11"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">FROM</span> (</span>
+<span id="cb8-12">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">SELECT</span></span>
+<span id="cb8-13">    <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>,</span>
+<span id="cb8-14">    <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">RANK</span>() <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">OVER</span> (<span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">PARTITION</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">BY</span> ID_LOC, TIMESTAMP_DAY <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">ORDER</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">BY</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">TIMESTAMP</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">DESC</span>) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">AS</span> q01</span>
+<span id="cb8-15">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">FROM</span> (</span>
+<span id="cb8-16">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">SELECT</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>, <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">date</span>(<span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">TIMESTAMP</span>) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">AS</span> TIMESTAMP_DAY</span>
+<span id="cb8-17">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">FROM</span> D_SOURCE</span>
 <span id="cb8-18">  )</span>
 <span id="cb8-19">)</span>
-<span id="cb8-20"><span class="kw" style="color: #003B4F;">WHERE</span> (q01 <span class="op" style="color: #5E5E5E;">&lt;=</span> <span class="dv" style="color: #AD0000;">1</span>)</span></code></pre></div>
+<span id="cb8-20"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">WHERE</span> (q01 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span></code></pre></div>
 <p>As you can see in the SQL code this time we find a so called window function in our translation. In general, a <a href="https://flexiple.com/sql/sql-window-functions-cheat-sheet/">SQL window function</a> applies aggregate and ranking operation over a particular data window (i.e.&nbsp;a set of rows). I am refering to the code part starting with <code>RANK()</code> and ending with the <code>ORDER BY()</code> statement. You can read a nice and concise summary on this topic following the link above (or <a href="https://flexiple.com/sql/sql-window-functions-cheat-sheet/">here</a>).</p>
 <div class="callout-tip callout callout-style-default no-icon callout-captioned">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
@@ -257,27 +693,83 @@ SQL rephrased: Again using a CTE
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>We can rephrase the SQL code from above by defining a CTE at the top and integrating the window function there:</p>
-<div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><span class="kw" style="color: #003B4F;">WITH</span> tmp_cte <span class="kw" style="color: #003B4F;">AS</span> (</span>
-<span id="cb9-2"><span class="kw" style="color: #003B4F;">SELECT</span></span>
+<div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">WITH</span> tmp_cte <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">AS</span> (</span>
+<span id="cb9-2"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">SELECT</span></span>
 <span id="cb9-3">  ID_LOC,</span>
-<span id="cb9-4">  <span class="kw" style="color: #003B4F;">TIME_ZONE</span>,</span>
-<span id="cb9-5">  <span class="dt" style="color: #AD0000;">TIMESTAMP</span>,</span>
+<span id="cb9-4">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">TIME_ZONE</span>,</span>
+<span id="cb9-5">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">TIMESTAMP</span>,</span>
 <span id="cb9-6">  TIMESTAMP_UNIX,</span>
-<span id="cb9-7">  <span class="dt" style="color: #AD0000;">TIME</span>,</span>
+<span id="cb9-7">  <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">TIME</span>,</span>
 <span id="cb9-8">  PRESSURE_MSL,</span>
 <span id="cb9-9">  TEMPERATURE_2M,</span>
 <span id="cb9-10">  TEMPERATURE_80M,</span>
 <span id="cb9-11">  TIMESTAMP_DAY,</span>
-<span id="cb9-12">  <span class="fu" style="color: #4758AB;">RANK</span>() <span class="kw" style="color: #003B4F;">OVER</span> (<span class="kw" style="color: #003B4F;">PARTITION</span> <span class="kw" style="color: #003B4F;">BY</span> ID_LOC, TIMESTAMP_DAY <span class="kw" style="color: #003B4F;">ORDER</span> <span class="kw" style="color: #003B4F;">BY</span> <span class="dt" style="color: #AD0000;">TIMESTAMP</span> <span class="kw" style="color: #003B4F;">DESC</span>) <span class="kw" style="color: #003B4F;">AS</span> q01</span>
-<span id="cb9-13">  <span class="kw" style="color: #003B4F;">FROM</span> (</span>
-<span id="cb9-14">    <span class="kw" style="color: #003B4F;">SELECT</span> <span class="op" style="color: #5E5E5E;">*</span>, <span class="dt" style="color: #AD0000;">date</span>(<span class="dt" style="color: #AD0000;">TIMESTAMP</span>) <span class="kw" style="color: #003B4F;">AS</span> TIMESTAMP_DAY</span>
-<span id="cb9-15">    <span class="kw" style="color: #003B4F;">FROM</span> D_SOURCE</span>
+<span id="cb9-12">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">RANK</span>() <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">OVER</span> (<span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">PARTITION</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">BY</span> ID_LOC, TIMESTAMP_DAY <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">ORDER</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">BY</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">TIMESTAMP</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">DESC</span>) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">AS</span> q01</span>
+<span id="cb9-13">  <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">FROM</span> (</span>
+<span id="cb9-14">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">SELECT</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>, <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">date</span>(<span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">TIMESTAMP</span>) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">AS</span> TIMESTAMP_DAY</span>
+<span id="cb9-15">    <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">FROM</span> D_SOURCE</span>
 <span id="cb9-16">  )</span>
 <span id="cb9-17">)</span>
-<span id="cb9-18"><span class="kw" style="color: #003B4F;">SELECT</span></span>
-<span id="cb9-19"> <span class="op" style="color: #5E5E5E;">*</span></span>
-<span id="cb9-20"><span class="kw" style="color: #003B4F;">FROM</span> tmp_cte </span>
-<span id="cb9-21"><span class="kw" style="color: #003B4F;">WHERE</span> (q01 <span class="op" style="color: #5E5E5E;">&lt;=</span> <span class="dv" style="color: #AD0000;">1</span>)</span></code></pre></div>
+<span id="cb9-18"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">SELECT</span></span>
+<span id="cb9-19"> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span></span>
+<span id="cb9-20"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">FROM</span> tmp_cte </span>
+<span id="cb9-21"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">WHERE</span> (q01 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span></code></pre></div>
 <p>Let’s run the rephrased code in Snowflake providing the same results as before.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -311,15 +803,45 @@ PS: How do I upload a local data file into Snowflake?
 <section id="step-1" class="level4">
 <h4 class="anchored" data-anchor-id="step-1">Step 1</h4>
 <p>When creating the table in Snowflake we need to define the column definitions, i.e.&nbsp;providing a name for each column and the data type specification of each column. The column definitions are separated by commas. For our concrete example the destination table (named D_SOURCE) with its 8 columns is created in Snowflake as follows:</p>
-<div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><span class="kw" style="color: #003B4F;">CREATE</span> <span class="kw" style="color: #003B4F;">TABLE</span> D_SOURCE(</span>
-<span id="cb10-2">ID_LOC <span class="dt" style="color: #AD0000;">VARCHAR</span>,</span>
-<span id="cb10-3"><span class="kw" style="color: #003B4F;">TIME_ZONE</span> <span class="dt" style="color: #AD0000;">VARCHAR</span>, </span>
-<span id="cb10-4"><span class="dt" style="color: #AD0000;">TIMESTAMP</span> TIMESTAMP_NTZ(<span class="dv" style="color: #AD0000;">9</span>),</span>
-<span id="cb10-5">TIMESTAMP_UNIX <span class="dt" style="color: #AD0000;">NUMBER</span>(<span class="dv" style="color: #AD0000;">38</span>,<span class="dv" style="color: #AD0000;">0</span>),</span>
-<span id="cb10-6"><span class="dt" style="color: #AD0000;">TIME</span> TIMESTAMP_NTZ(<span class="dv" style="color: #AD0000;">9</span>),</span>
-<span id="cb10-7">PRESSURE_MSL <span class="dt" style="color: #AD0000;">FLOAT</span>,</span>
-<span id="cb10-8">TEMPERATURE_2M <span class="dt" style="color: #AD0000;">FLOAT</span>,</span>
-<span id="cb10-9">TEMPERATURE_80M <span class="dt" style="color: #AD0000;">FLOAT</span></span>
+<div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">CREATE</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">TABLE</span> D_SOURCE(</span>
+<span id="cb10-2">ID_LOC <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">VARCHAR</span>,</span>
+<span id="cb10-3"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-style: inherit;">TIME_ZONE</span> <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">VARCHAR</span>, </span>
+<span id="cb10-4"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">TIMESTAMP</span> TIMESTAMP_NTZ(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">9</span>),</span>
+<span id="cb10-5">TIMESTAMP_UNIX <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">NUMBER</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">38</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>),</span>
+<span id="cb10-6"><span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">TIME</span> TIMESTAMP_NTZ(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">9</span>),</span>
+<span id="cb10-7">PRESSURE_MSL <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">FLOAT</span>,</span>
+<span id="cb10-8">TEMPERATURE_2M <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">FLOAT</span>,</span>
+<span id="cb10-9">TEMPERATURE_80M <span class="dt" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">FLOAT</span></span>
 <span id="cb10-10">)</span></code></pre></div>
 </section>
 <section id="step-2" class="level4">
@@ -359,14 +881,14 @@ PS: How do I upload a local data file into Snowflake?
   <category>r</category>
   <category>snowflake</category>
   <category>productivity</category>
-  <guid>https://gg-delta.github.io/Delta-Science-Blog/posts/post-three/index.html</guid>
+  <guid>https://gg-delta.github.io/Delta-Science-Blog/posts/post-three/</guid>
   <pubDate>Tue, 23 May 2023 23:00:00 GMT</pubDate>
   <media:content url="https://gg-delta.github.io/Delta-Science-Blog/posts/post-three/pexels-boom-12585934.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Using Jupyter Notebook in virtual environments in a free source-code editor (VSCodium/VS Code)</title>
   <dc:creator>GG Supp</dc:creator>
-  <link>https://gg-delta.github.io/Delta-Science-Blog/posts/post-two/index.html</link>
+  <link>https://gg-delta.github.io/Delta-Science-Blog/posts/post-two/</link>
   <description><![CDATA[ 
 
 
@@ -564,14 +1086,14 @@ How to add a new Python package to the current Jupyter kernel?
   <category>python</category>
   <category>productivity</category>
   <category>setup</category>
-  <guid>https://gg-delta.github.io/Delta-Science-Blog/posts/post-two/index.html</guid>
+  <guid>https://gg-delta.github.io/Delta-Science-Blog/posts/post-two/</guid>
   <pubDate>Wed, 23 Nov 2022 00:00:00 GMT</pubDate>
   <media:content url="https://gg-delta.github.io/Delta-Science-Blog/posts/post-two/pexels-tuur-tisseghem-159333.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>Save time &amp; nerves: start controlling different Python versions (pyenv) and managing virtual environments (virtualenvwrapper)</title>
   <dc:creator>GG Supp</dc:creator>
-  <link>https://gg-delta.github.io/Delta-Science-Blog/posts/post-one/index.html</link>
+  <link>https://gg-delta.github.io/Delta-Science-Blog/posts/post-one/</link>
   <description><![CDATA[ 
 
 
@@ -924,7 +1446,7 @@ Important
   <category>python</category>
   <category>productivity</category>
   <category>setup</category>
-  <guid>https://gg-delta.github.io/Delta-Science-Blog/posts/post-one/index.html</guid>
+  <guid>https://gg-delta.github.io/Delta-Science-Blog/posts/post-one/</guid>
   <pubDate>Fri, 04 Nov 2022 00:00:00 GMT</pubDate>
   <media:content url="https://gg-delta.github.io/Delta-Science-Blog/posts/post-one/pexels-paul-theodor-oja-2393736.jpg" medium="image" type="image/jpeg"/>
 </item>
